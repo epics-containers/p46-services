@@ -9,3 +9,32 @@ ioc-instance:
   # useHostNetwork - use host network for IOC - required for Channel Access
   # to work outside of the cluster
   hostNetwork: false
+
+  # affinity and tolerations to get the right nodes on pollux
+  securityContext:
+    runAsUser: 37890
+    runAsGroup: 37890
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beamline
+                operator: In
+                values:
+                  - bl46p
+
+  tolerations:
+    - key: beamline
+      operator: Equal
+      value: bl46p
+      effect: NoSchedule
+    - key: location
+      operator: Equal
+      value: bl46p
+      effect: NoSchedule
+    - key: nodetype
+      operator: Equal
+      value: training-rig
+      effect: NoSchedule
