@@ -1,0 +1,54 @@
+blueapi:
+  hostNetwork: true
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 500Mi
+    requests:
+      cpu: 500m
+      memory: 100Mi
+  nodeSelector:
+    kubernetes.io/hostname: p46-control.diamond.ac.uk
+  tolerations:
+    - key: nodetype
+      operator: Equal
+      value: test-rig
+      effect: NoSchedule
+    - key: beamline
+      operator: Equal
+      value: p46-beamline
+      effect: NoSchedule
+  ingress:
+    create: true
+    host: p46-blueapi.diamond.ac.uk
+  extraEnvVars:
+    - name: RABBITMQ_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: rabbitmq-password
+          key: rabbitmq-password
+  worker:
+    env:
+      sources:
+      - kind: dodal
+        module: dodal.beamlines.p46
+      - kind: planFunctions
+        module: i22_bluesky.plans
+        # TODO: Make p46 plans repository
+      - kind: planFunctions
+        module: dls_bluesky_core.plans
+      - kind: planFunctions
+        module: dls_bluesky_core.stubs
+      events:
+        broadcast_status_events: False
+    stomp:
+      auth:
+        username: p46
+        passcode: ${RABBITMQ_PASSWORD}
+      host: daq-rabbitmq
+    scratch:
+      root: /dls_sw/p46/software/blueapi/scratch
+      repositories:
+        - name: dodal
+          remote_url: https://github.com/DiamondLightSource/dodal.git
+  scratchHostPath: /dls_sw/p46/software/blueapi/scratch
