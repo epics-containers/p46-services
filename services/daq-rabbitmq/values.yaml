@@ -2,7 +2,7 @@ rabbitmq:
   auth:
     username: p46
     existingPasswordSecret: rabbitmq-password
-  extraPlugins: rabbitmq_jms_topic_exchange,rabbitmq_stomp
+  extraPlugins: rabbitmq_stomp
   persistence:
     enabled: false
   rbac:

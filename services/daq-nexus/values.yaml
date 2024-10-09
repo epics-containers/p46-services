@@ -16,12 +16,12 @@ nexus-file-converter:
         path: template.yaml
   - name: nexus-data
     hostPath:
-      path: /dls/p46/data
+      path: /dls/science/groups/daq/p46/data
       type: DirectoryOrCreate
 
   volumeMounts:
   - name: nexus-data
-    mountPath: /dls/p46/data
+    mountPath: /dls/science/groups/daq/p46/data
     mountPropagation: HostToContainer
   - name: nexus-template
     mountPath: /templates
@@ -38,16 +38,14 @@ nexus-file-converter:
     files:
       output:
         directory:
-          staticDirectory: /dls/p46/data/2024/cm37283-2/
+          staticDirectory: /dls/science/groups/daq/p46/data/2024/cm37283-2/
         nameTemplate: <DATA_SESSION>
         devices:
           types:
             det: NX_DETECTOR
-            diff: NX_DETECTOR
-            panda1: NX_COLLECTION
-            panda2: NX_COLLECTION
-            chopper: NX_COLLECTION
             sample_stage: NX_COLLECTION
+            sample_stage.x: NX_POSITIONER
+            sample_stage.theta: NX_POSITIONER
   containerEnvVars:
   - name: SPRING_RABBITMQ_PASSWORD
     valueFrom:

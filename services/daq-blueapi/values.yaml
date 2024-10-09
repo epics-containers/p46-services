@@ -8,20 +8,23 @@ blueapi:
       cpu: 500m
       memory: 100Mi
   nodeSelector:
-    kubernetes.io/hostname: p46-control.diamond.ac.uk
+    kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   tolerations:
     - key: nodetype
       operator: Equal
-      value: test-rig
+      value: training-rig
       effect: NoSchedule
     - key: beamline
       operator: Equal
-      value: p46-beamline
+      value: bl46p
       effect: NoSchedule
   ingress:
     create: true
     host: p46-blueapi.diamond.ac.uk
   extraEnvVars:
+    - name: BEAMLINE
+      value: p46
+
     - name: RABBITMQ_PASSWORD
       valueFrom:
         secretKeyRef:
