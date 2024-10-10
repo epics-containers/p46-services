@@ -50,8 +50,8 @@ blueapi:
         passcode: ${RABBITMQ_PASSWORD}
       host: daq-rabbitmq
     scratch:
-      root: /dls_sw/p46/software/blueapi/scratch
+      root: /exports/mybeamline/p46/scratch/blueapi
       repositories:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
-  scratchHostPath: /dls_sw/p46/software/blueapi/scratch
+  scratchHostPath: /exports/mybeamline/p46/scratch/blueapi

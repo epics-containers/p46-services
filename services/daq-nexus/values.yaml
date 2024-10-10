@@ -16,12 +16,12 @@ nexus-file-converter:
         path: template.yaml
   - name: nexus-data
     hostPath:
-      path: /dls/science/groups/daq/p46/data
+      path: /exports/mybeamline/p46/data/
       type: DirectoryOrCreate
 
   volumeMounts:
   - name: nexus-data
-    mountPath: /dls/science/groups/daq/p46/data
+    mountPath: /exports/mybeamline/p46/data/
     mountPropagation: HostToContainer
   - name: nexus-template
     mountPath: /templates
@@ -38,7 +38,7 @@ nexus-file-converter:
     files:
       output:
         directory:
-          staticDirectory: /dls/science/groups/daq/p46/data/2024/cm37283-2/
+          staticDirectory: /exports/mybeamline/p46/data/2024/cm11111-1
         nameTemplate: <DATA_SESSION>
         devices:
           types:
