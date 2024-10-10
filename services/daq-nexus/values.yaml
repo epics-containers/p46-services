@@ -1,0 +1,57 @@
+nexus-file-converter:
+  beamline: p46
+  template:
+    entry/:
+      NX_class@: NXentry
+      instrument/:
+        NX_class@: NXinstrument
+        name: p46
+
+  volumes:
+  - name: nexus-template
+    configMap:
+      name: nexus-template
+      items:
+      - key: template.yaml
+        path: template.yaml
+  - name: nexus-data
+    hostPath:
+      path: /exports/mybeamline/p46/data/
+      type: DirectoryOrCreate
+
+  volumeMounts:
+  - name: nexus-data
+    mountPath: /exports/mybeamline/p46/data/
+    mountPropagation: HostToContainer
+  - name: nexus-template
+    mountPath: /templates
+
+  application:
+    server:
+      port: 8084
+    spring:
+      profiles:
+        active: rabbitmq
+      rabbitmq:
+        host: daq-rabbitmq
+        username: p46
+    files:
+      output:
+        directory:
+          staticDirectory: /exports/mybeamline/p46/data/2024/cm11111-1
+        nameTemplate: <DATA_SESSION>
+        devices:
+          types:
+            det: NX_DETECTOR
+            sample_stage: NX_COLLECTION
+            sample_stage.x: NX_POSITIONER
+            sample_stage.theta: NX_POSITIONER
+  containerEnvVars:
+  - name: SPRING_RABBITMQ_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmq-password
+        key: rabbitmq-password
+  securityContext:
+    runAsUser: 37890 # p46-detector
+    runAsGroup: 37890
