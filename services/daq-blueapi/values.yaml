@@ -34,10 +34,8 @@ blueapi:
     env:
       sources:
       - kind: dodal
-        module: dodal.beamlines.p46
-      - kind: planFunctions
-        module: i22_bluesky.plans
-        # TODO: Make p46 plans repository
+        module: dodal.beamlines.training_rig
+        # TODO: Make training rig plans repository
       - kind: planFunctions
         module: dls_bluesky_core.plans
       - kind: planFunctions
