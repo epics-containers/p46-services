@@ -37,9 +37,7 @@ blueapi:
         module: dodal.beamlines.training_rig
         # TODO: Make training rig plans repository
       - kind: planFunctions
-        module: dls_bluesky_core.plans
-      - kind: planFunctions
-        module: dls_bluesky_core.stubs
+        module: blueapi.startup
       events:
         broadcast_status_events: False
     stomp:
@@ -56,4 +54,6 @@ blueapi:
       repositories:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
+        - name: blueapi
+          remote_url: https://github.com/DiamondLightSource/blueapi.git
   scratchHostPath: /exports/mybeamline/p46/scratch/blueapi
