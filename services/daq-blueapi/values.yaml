@@ -47,8 +47,10 @@ blueapi:
     stomp:
       auth:
         username: p46
-        passcode: ${RABBITMQ_PASSWORD}
+        password: ${RABBITMQ_PASSWORD}
       host: daq-rabbitmq
+  
+  InitContainer:
     scratch:
       root: /exports/mybeamline/p46/scratch/blueapi
       repositories:
