@@ -50,7 +50,7 @@ blueapi:
         password: ${RABBITMQ_PASSWORD}
       host: daq-rabbitmq
   
-  InitContainer:
+  initContainer:
     scratch:
       root: /exports/mybeamline/p46/scratch/blueapi
       repositories:
