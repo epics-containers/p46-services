@@ -14,7 +14,7 @@ rabbitmq:
     - name: stomp
       containerPort: 61613
   service:
-    type: ClusterIP
+    type: LoadBalancer
     extraPorts:
       - name: stomp
         port: 61613
