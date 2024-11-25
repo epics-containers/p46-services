@@ -28,7 +28,7 @@
     <name>X Stage</name>
     <macros>
       <M>STAGE:X</M>
-      <P>BL46P-MO-MAP-01:</P>
+      <P>bl46p-MO-MAP-01:</P>
     </macros>
     <x>5</x>
     <y>30</y>
@@ -150,7 +150,7 @@
     <name>Rotation Stage</name>
     <macros>
       <M>STAGE:A</M>
-      <P>BL46P-MO-MAP-01:</P>
+      <P>bl46p-MO-MAP-01:</P>
     </macros>
     <x>5</x>
     <y>204</y>
@@ -272,7 +272,7 @@
     <name>Auto Generated Engineering Screens</name>
     <macros>
       <M>STAGE:A</M>
-      <P>BL46P-MO-MAP-01:</P>
+      <P>bl46p-MO-MAP-01:</P>
     </macros>
     <x>5</x>
     <y>850</y>
@@ -290,16 +290,16 @@
       <name>OpenDisplay</name>
       <actions>
         <action type="open_display">
-          <file>https://p46-opis.diamond.ac.uk/bl46P-ea-dcam-02/index.bob</file>
+          <file>https://p46-opis.diamond.ac.uk/bl46p-ea-dcam-02/index.bob</file>
           <macros>
-            <P>BL46P-EA-DET-01</P>
+            <P>bl46p-EA-DET-01</P>
             <R>:DET:</R>
           </macros>
           <target>tab</target>
           <description>Open Display</description>
         </action>
       </actions>
-      <text>BL46P-EA-DET-02</text>
+      <text>bl46p-EA-DET-02</text>
       <x>153</x>
       <y>10</y>
       <width>205</width>
@@ -317,16 +317,16 @@
       <name>OpenDisplay_1</name>
       <actions>
         <action type="open_display">
-          <file>https://p46-opis.diamond.ac.uk/bl46P-ea-dcam-01/index.bob</file>
+          <file>https://p46-opis.diamond.ac.uk/bl46p-ea-dcam-01/index.bob</file>
           <macros>
-            <P>BL46P-EA-DET-01</P>
+            <P>bl46p-EA-DET-01</P>
             <R>:TX:</R>
           </macros>
           <target>tab</target>
           <description>Open Display</description>
         </action>
       </actions>
-      <text>BL46P-EA-DET-01</text>
+      <text>bl46p-EA-DET-01</text>
       <x>153</x>
       <y>35</y>
       <width>205</width>
@@ -344,16 +344,16 @@
       <name>OpenDisplay_2</name>
       <actions>
         <action type="open_display">
-          <file>https://p46-opis.diamond.ac.uk/bl46P-mo-ioc-01/index.bob</file>
+          <file>https://p46-opis.diamond.ac.uk/bl46p-mo-ioc-01/index.bob</file>
           <macros>
-            <P>BL46P-EA-DET-01</P>
+            <P>bl46p-EA-DET-01</P>
             <R>:HDF5:</R>
           </macros>
           <target>tab</target>
           <description>Open Display</description>
         </action>
       </actions>
-      <text>BL46P-MO-MAP-01</text>
+      <text>bl46p-MO-MAP-01</text>
       <x>153</x>
       <y>60</y>
       <width>205</width>
@@ -371,16 +371,16 @@
       <name>OpenDisplay_3</name>
       <actions>
         <action type="open_display">
-          <file>https://p46-opis.diamond.ac.uk/bl46P-ea-panda-01/index.bob</file>
+          <file>https://p46-opis.diamond.ac.uk/bl46p-ea-panda-01/index.bob</file>
           <macros>
-            <P>BL46P-EA-DET-01</P>
+            <P>bl46p-EA-DET-01</P>
             <R>:HDF5:</R>
           </macros>
           <target>tab</target>
           <description>Open Display</description>
         </action>
       </actions>
-      <text>BL46P-MO-PANDA-01</text>
+      <text>bl46p-MO-PANDA-01</text>
       <x>153</x>
       <y>85</y>
       <width>205</width>
@@ -391,7 +391,7 @@
   <widget type="group" version="2.0.0">
     <name>Sample Camera</name>
     <macros>
-      <P>BL46P-EA-DET-01</P>
+      <P>bl46p-EA-DET-01</P>
       <R>:DET:</R>
     </macros>
     <x>5</x>
@@ -719,7 +719,7 @@
   </widget>
   <widget type="image" version="2.0.0">
     <name>Image</name>
-    <pv_name>pva://BL46P-EA-DET-01:TX:PVA</pv_name>
+    <pv_name>pva://bl46p-EA-DET-01:TX:PVA</pv_name>
     <x>408</x>
     <y>36</y>
     <width>828</width>
@@ -758,7 +758,7 @@
   </widget>
   <widget type="image" version="2.0.0">
     <name>Image_1</name>
-    <pv_name>pva://BL46P-EA-DET-02:TX:PVA</pv_name>
+    <pv_name>pva://bl46p-EA-DET-02:TX:PVA</pv_name>
     <x>480</x>
     <y>580</y>
     <width>688</width>
@@ -800,7 +800,7 @@
   <widget type="group" version="2.0.0">
     <name>Overview Camera</name>
     <macros>
-      <P>BL46P-EA-DET-02</P>
+      <P>bl46p-EA-DET-02</P>
       <R>:DET:</R>
     </macros>
     <x>5</x>
