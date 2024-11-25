@@ -61,3 +61,7 @@ entities:
   - type: epics.dbpf
     pv: BL46P-EA-DET-01:DET:GC_GevSCPSPacketSize
     value: "1500"
+
+  - type: epics.dbpf
+    pv: BL46P-EA-DET-01:TX:EnableCallbacks
+    value: "1"
