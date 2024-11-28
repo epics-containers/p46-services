@@ -30,6 +30,11 @@ blueapi:
         secretKeyRef:
           name: rabbitmq-password
           key: rabbitmq-password
+  tracing:
+    otlp:
+      enabled: true
+      server:
+        host: http://jaeger-all-in-one # replace with central instance
   worker:
     env:
       sources:
