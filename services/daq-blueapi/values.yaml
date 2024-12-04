@@ -43,6 +43,8 @@ blueapi:
         # TODO: Make training rig plans repository
       - kind: planFunctions
         module: dodal.plans
+      - kind: planFunctions
+        module: ophyd_async.plan_stubs        
       events:
         broadcast_status_events: False
     stomp:
