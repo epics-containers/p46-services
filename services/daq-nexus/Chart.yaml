@@ -12,5 +12,5 @@ type: application
 
 dependencies:
   - name: nexus-file-converter
-    version: "3.6.1-SNAPSHOT4"
+    version: "3.6.1"
     repository: "https://sonatypenexus.diamond.ac.uk/repository/daq-helm/"
