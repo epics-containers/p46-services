@@ -1,6 +1,6 @@
 apiVersion: v2
-name: daq-nexus
-description: nexus
+name: p46-nexus
+description: NeXus service deployed for p46
 
 version: 3.5.0
 
