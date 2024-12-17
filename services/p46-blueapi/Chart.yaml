@@ -1,6 +1,6 @@
 apiVersion: v2
-name: daq-blueapi
-description: blueapi
+name: p46-blueapi
+description: blueapi deployed for p46 with authentication and tracing
 
 version: 0.6.2-rc2
 # When we deploy with the edge-containers-cli we override this on the command line.
