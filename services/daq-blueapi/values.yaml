@@ -56,12 +56,12 @@ blueapi:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
       client_id: "blueapi-cli"
     scratch:
-      root: /exports/mybeamline/p46/scratch/blueapi
+      root: /dls_sw/htss/p46/scratch
   
   initContainer:
     scratch:
-      root: /exports/mybeamline/p46/scratch/blueapi
+      root: /dls_sw/htss/p46/scratch
       repositories:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
-  scratchHostPath: /exports/mybeamline/p46/scratch/blueapi
+  scratchHostPath: /dls_sw/htss/p46/scratch
