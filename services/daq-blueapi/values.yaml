@@ -40,7 +40,8 @@ blueapi:
       sources:
       - kind: dodal
         module: dodal.beamlines.training_rig
-        # TODO: Make training rig plans repository
+      - kind: planFunctions
+        module: htss_rig_bluesky.plans
       - kind: planFunctions
         module: dodal.plans
       - kind: planFunctions
