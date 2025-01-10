@@ -65,4 +65,6 @@ blueapi:
       repositories:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
+        - name: htss-rig-bluesky
+          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
   scratchHostPath: /dls_sw/htss/p46/scratch
