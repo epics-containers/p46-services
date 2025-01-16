@@ -45,7 +45,9 @@ blueapi:
       - kind: planFunctions
         module: dodal.plans
       - kind: planFunctions
-        module: ophyd_async.plan_stubs        
+        module: ophyd_async.plan_stubs
+      - kind: planFunctions
+        module: htss_rig_bluesky.plans.calibration
       events:
         broadcast_status_events: False
     stomp:
