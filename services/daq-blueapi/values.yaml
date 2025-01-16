@@ -49,10 +49,10 @@ blueapi:
       events:
         broadcast_status_events: False
     stomp:
-    auth:
-      username: p46
-      password: ${RABBITMQ_PASSWORD}
-    host: daq-rabbitmq
+      auth:
+        username: p46
+        password: ${RABBITMQ_PASSWORD}
+      host: daq-rabbitmq
     oidc:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
       client_id: "blueapi-cli"
