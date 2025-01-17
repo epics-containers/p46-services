@@ -48,6 +48,8 @@ blueapi:
         module: ophyd_async.plan_stubs
       - kind: planFunctions
         module: htss_rig_bluesky.plans.calibration
+      - kind: planFunctions
+        module: htss_rig_bluesky.plans.tomography
       events:
         broadcast_status_events: False
     stomp:
