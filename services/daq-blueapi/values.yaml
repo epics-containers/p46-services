@@ -50,6 +50,8 @@ blueapi:
         module: htss_rig_bluesky.plans.calibration
       - kind: planFunctions
         module: htss_rig_bluesky.plans.tomography
+      - kind: planFunctions
+        module: htss_rig_bluesky.plans.diagnostic
       events:
         broadcast_status_events: False
     stomp:
