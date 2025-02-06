@@ -50,7 +50,7 @@ nexus-file-converter:
       profiles:
         active: rabbitmq
       rabbitmq:
-        host: daq-rabbitmq
+        host: p46-rabbitmq
         username: p46
     files:
       output:
