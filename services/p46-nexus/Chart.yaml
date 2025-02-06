@@ -1,8 +1,9 @@
 apiVersion: v2
-name: daq-blueapi
-description: blueapi
+name: p46-nexus
+description: NeXus service deployed for p46
 
-version: 0.7.2
+version: 3.5.0
+
 # When we deploy with the edge-containers-cli we override this on the command line.
 # Direct deployment with Helm will use the default beta value.
 appVersion: 0.0.1b1
@@ -10,6 +11,6 @@ appVersion: 0.0.1b1
 type: application
 
 dependencies:
-  - name: blueapi
-    version: "0.7.2"
-    repository: "oci://ghcr.io/diamondlightsource/charts"
+  - name: nexus-file-converter
+    version: "3.6.1"
+    repository: "https://sonatypenexus.diamond.ac.uk/repository/daq-helm/"
