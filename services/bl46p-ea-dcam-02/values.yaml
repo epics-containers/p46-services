@@ -2,3 +2,7 @@
 
 ioc-instance:
   image: ghcr.io/epics-containers/ioc-adaravis-runtime:2024.11.2
+
+  dataVolume:
+    pvc: false
+    hostPath: /exports/mybeamline/data/
