@@ -1,0 +1,15 @@
+apiVersion: v2
+name: pxx-jaeger
+description: Jaeger-all-in-one deployed common for p46,p47,p48,p49 (temporarily until Grafana Tempo instance configured)
+
+version: 0.1.12
+
+appVersion: "1.55"
+
+type: application
+
+dependencies:
+  - name: jaeger-all-in-one
+    alias: jaeger
+    version: "0.1.12"
+    repository: "https://raw.githubusercontent.com/hansehe/jaeger-all-in-one/master/helm/charts"
