@@ -1,0 +1,5 @@
+jaeger:
+  enableHttpOpenTelemetryCollector: true
+
+  service:
+    type: LoadBalancer  # Expose web UI on IP.
