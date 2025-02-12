@@ -72,4 +72,6 @@ blueapi:
           remote_url: https://github.com/bluesky/ophyd-async.git
         - name: scanspec
           remote_url: https://github.com/bluesky/scanspec.git
+        - name: bluesky-stomp
+          remote_url: https://github.com/DiamondLightSource/bluesky-stomp.git
   scratchHostPath: /dls_sw/htss/p46/scratch
