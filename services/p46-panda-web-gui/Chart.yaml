@@ -1,6 +1,6 @@
 apiVersion: v2
 name: p46-panda-web-gui
-description: A Helm chart for Kubernetes
+description: Nginx-based reverse proxy exposing the test rig's internal panda web GUI to the outside world
 
 
 type: application
