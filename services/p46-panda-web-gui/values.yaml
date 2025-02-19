@@ -22,6 +22,8 @@ nginx:
     enabled: true
     hostname: bl46p-mo-panda-01.diamond.ac.uk
     pathType: Prefix
+  service:
+    type: ClusterIP
   networkPolicy:
     enabled: false
   nodeSelector:
