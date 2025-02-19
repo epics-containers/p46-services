@@ -21,7 +21,7 @@ nginx:
   ingress:
     enabled: true
     hostname: bl46p-mo-panda-01.diamond.ac.uk
-    pathType: Exact
+    pathType: Preifx
   networkPolicy:
     enabled: false
   nodeSelector:
