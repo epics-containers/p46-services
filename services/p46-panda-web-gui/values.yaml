@@ -18,6 +18,9 @@ nginx:
           proxy_set_header Host $host;
       }
     }
+  ingress:
+    enabled: true
+    hostName: p46-blueapi.diamond.ac.uk
   networkPolicy:
     enabled: false
   nodeSelector:
