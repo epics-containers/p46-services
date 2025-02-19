@@ -26,6 +26,9 @@ nginx:
     annotations:
       proxy-read-timeout: "3600"
       proxy-send-timeout: "3600"
+    extraTls:
+      - hosts:
+        - bl46p-mo-panda-01.diamond.ac.uk
   service:
     type: ClusterIP
   networkPolicy:
