@@ -24,8 +24,8 @@ nginx:
     pathType: Prefix
     tls: true
     annotations:
-      proxy-read-timeout: 3600
-      proxy-send-timeout: 3600
+      proxy-read-timeout: "3600"
+      proxy-send-timeout: "3600"
   service:
     type: ClusterIP
   networkPolicy:
