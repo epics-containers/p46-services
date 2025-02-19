@@ -20,7 +20,7 @@ nginx:
     }
   ingress:
     enabled: true
-    hostName: p46-blueapi.diamond.ac.uk
+    hostName: bl46p-mo-panda-01.diamond.ac.uk
   networkPolicy:
     enabled: false
   nodeSelector:
