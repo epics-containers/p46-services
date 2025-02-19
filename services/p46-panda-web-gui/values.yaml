@@ -23,6 +23,9 @@ nginx:
     hostname: bl46p-mo-panda-01.diamond.ac.uk
     pathType: Prefix
     tls: true
+    annotations:
+      proxy-read-timeout: 3600
+      proxy-send-timeout: 3600
   service:
     type: ClusterIP
   networkPolicy:
