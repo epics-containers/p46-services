@@ -1,11 +1,12 @@
 rabbitmq:
   auth:
-    username: p46
+    username: admin
     existingPasswordSecret: rabbitmq-secrets
     existingErlangSecret: rabbitmq-secrets
   extraPlugins: rabbitmq_stomp
   persistence:
     enabled: false
+  initScriptsCM: rabbitmq-init
   rbac:
     create: false
   serviceAccount:
