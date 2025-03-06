@@ -34,7 +34,7 @@ blueapi:
     otlp:
       enabled: true
       server:
-        host: http://172.23.168.241
+        host: http://otel.tracing-dev.diamond.ac.uk
   worker:
     env:
       sources:
