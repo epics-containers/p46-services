@@ -6,7 +6,7 @@ nginx:
       # CHANGE THIS TO YOUR SERVER'S NAME
       server_name panda;
 
-      location / {
+      location /control {
           proxy_pass http://192.168.250.18:8008;
 
           proxy_set_header X-Forwarded-Host $http_host;
@@ -17,6 +17,17 @@ nginx:
           proxy_set_header Connection "Upgrade";
           proxy_set_header Host $host;
       }
+
+      location /admin {
+          proxy_pass http://192.168.250.18:80;
+
+          proxy_set_header X-Forwarded-Host $http_host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-Proto $scheme;
+
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection "Upgrade";
+          proxy_set_header Host $host;
     }
   networkPolicy:
     enabled: false
