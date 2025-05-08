@@ -1,0 +1,5 @@
+# Default owner for files if no later rule takes priority
+* @gilesknap
+
+# DAQ Services
+/services/p46-* @DiamondJoseph
