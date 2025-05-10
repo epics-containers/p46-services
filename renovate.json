@@ -5,6 +5,7 @@
   ],
   "packageRules": [
     {
+<<<<<<< before updating
       "groupName": "group ec chart updates",
       "matchSourceUrls": [
         "https://github.com/epics-containers/ec-helm-charts"
@@ -12,3 +13,16 @@
     }
   ]
 }
+=======
+      "groupName": "ec charts",
+      "matchSourceUrls": [
+        "https://github.com/epics-containers/ec-helm-charts"
+      ],
+      "enabled": false,
+      "description": [
+        "These dependencies are updated as part of updating the copier template"
+      ]
+    }
+  ]
+}
+>>>>>>> after updating
