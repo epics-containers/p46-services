@@ -5,15 +5,6 @@
   ],
   "packageRules": [
     {
-<<<<<<< before updating
-      "groupName": "group ec chart updates",
-      "matchSourceUrls": [
-        "https://github.com/epics-containers/ec-helm-charts"
-      ]
-    }
-  ]
-}
-=======
       "groupName": "ec charts",
       "matchSourceUrls": [
         "https://github.com/epics-containers/ec-helm-charts"
@@ -25,4 +16,3 @@
     }
   ]
 }
->>>>>>> after updating
