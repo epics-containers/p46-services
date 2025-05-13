@@ -13,6 +13,12 @@
       "description": [
         "These dependencies are updated as part of updating the copier template"
       ]
+    },
+    {
+      "description": ["automerge non-breaking changes for versions >=1.0.0"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
     }
   ]
 }
