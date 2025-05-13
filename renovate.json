@@ -9,6 +9,12 @@
       "matchSourceUrls": [
         "https://github.com/epics-containers/ec-helm-charts"
       ]
+    },
+    {
+      "description": ["automerge non-breaking changes for versions >=1.0.0"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
     }
   ]
 }
