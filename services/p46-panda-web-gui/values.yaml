@@ -30,6 +30,19 @@ nginx:
           proxy_set_header Host $host;
       }
     }
+  ingress:
+    enabled: true
+    hostname: bl46p-mo-panda-01.diamond.ac.uk
+    pathType: Prefix
+    tls: true
+    annotations:
+      proxy-read-timeout: "3600"
+      proxy-send-timeout: "3600"
+    extraTls:
+      - hosts:
+        - bl46p-mo-panda-01.diamond.ac.uk
+  service:
+    type: ClusterIP
   networkPolicy:
     enabled: false
   nodeSelector:
