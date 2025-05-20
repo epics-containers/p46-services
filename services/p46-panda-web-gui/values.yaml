@@ -1,45 +1,36 @@
 nginx:
-  serverBlock: |-
+  hostNetwork: true
+  dnsPolicy: ClusterFirstWithHostNet # required when using hostNetwork
+
+  containerPorts:
+    http: 8080 # will serve proxied traffic from nginx
+    https: 8443
+
+  service:
+    type: LoadBalancer
+    ports:
+      http: 80
+      https: 443
+    targetPort:
+      http: 8080
+      https: 8443
+    loadBalancerIP: 203.0.113.50 # <-- your actual external static IP
+
+  serverBlock: |
     server {
-      listen 0.0.0.0:8080 ipv6only=off;
+        listen 8080;
 
-      # CHANGE THIS TO YOUR SERVER'S NAME
-      server_name panda;
+        location /control/ {
+            proxy_pass http://192.168.250.18:8008/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
 
-      location /control {
-          proxy_pass http://192.168.250.18:8008;
-
-          proxy_set_header X-Forwarded-Host $http_host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-Proto $scheme;
-
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "Upgrade";
-          proxy_set_header Host $host;
-      }
-
-      location /admin {
-          proxy_pass http://192.168.250.18:80;
-
-          proxy_set_header X-Forwarded-Host $http_host;
-          proxy_set_header X-Real-IP $remote_addr;
-          proxy_set_header X-Forwarded-Proto $scheme;
-
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection "Upgrade";
-          proxy_set_header Host $host;
-      }
+        location /admin/ {
+            proxy_pass http://192.168.250.18:80/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
     }
-  networkPolicy:
-    enabled: false
-  nodeSelector:
-    kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
-  tolerations:
-    - key: nodetype
-      operator: Equal
-      value: training-rig
-      effect: NoSchedule
-    - key: beamline
-      operator: Equal
-      value: bl46p
-      effect: NoSchedule
