@@ -1,6 +1,10 @@
 nginx:
   hostNetwork: true
+
   dnsPolicy: ClusterFirstWithHostNet # required when using hostNetwork
+  podSecurityContext:
+    capabilities:
+      drop: ["ALL"] # NOTE needed for kyverno to accept the pod
 
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
