@@ -34,7 +34,12 @@ nginx:
   serverBlock: |
     server {
         listen 8080;
-
+        # Redirect from root to /admin/
+        
+        location = / {
+          return 301 /admin/;
+        }
+        
         location /control/ {
             proxy_pass http://192.168.250.18:8008/;
             proxy_set_header Host $host;
