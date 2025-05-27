@@ -38,6 +38,7 @@ nginx:
   serverBlock: |
     server {
         listen 8080;
+        server_name _; # prevent a clash with the default one
         # Redirect from root to /admin/
         
         location = / {
