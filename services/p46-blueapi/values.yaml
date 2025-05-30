@@ -62,7 +62,7 @@ blueapi:
 
 
 oauth2:
-  extraEnvVars:
+  extraEnv:
     - name: OAUTH2_PROXY_CLIENT_SECRET
       valueFrom:
         secretKeyRef:
