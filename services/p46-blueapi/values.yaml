@@ -62,17 +62,19 @@ blueapi:
 
 
 oauth2:
-  # extraEnv:
-  #   - name: OAUTH2_PROXY_CLIENT_SECRET
-  #     valueFrom:
-  #       secretKeyRef:
-  #         name: blueapi-secret
-  #         key: OAUTH2_PROXY_CLIENT_SECRET
-  #   - name: OAUTH2_PROXY_CLIENT_ID
-  #     valueFrom:
-  #       secretKeyRef:
-  #         name: blueapi-secret
-  #         key: OAUTH2_PROXY_CLIENT_ID
+  extraEnv:
+    - name: OAUTH2_PROXY_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: OAUTH2_PROXY_CLIENT_SECRET
+    - name: OAUTH2_PROXY_CLIENT_ID
+      value: blueapi
+    #   valueFrom:
+    #     secretKeyRef:
+    #       name: blueapi-secret
+    #       key: OAUTH2_PROXY_CLIENT_ID
+    # - name:
   config:
     clientID: ${OAUTH2_PROXY_CLIENT_ID}
     clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
