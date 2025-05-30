@@ -91,6 +91,7 @@ oauth2:
       silence_ping_logging=true
       cookie_refresh="1m"
       cookie_expire="30m"
+      upstreams=["blueapi"]
   alphaConfig:
     enabled: true
     configData:
