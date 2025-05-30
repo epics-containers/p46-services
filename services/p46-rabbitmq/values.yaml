@@ -2,7 +2,7 @@ rabbitmq:
   auth:
     username: admin
     existingPasswordSecret: rabbitmq-secrets
-    existingErlangSecret: rabbitmq-secrets
+    # existingErlangSecret: rabbitmq-secrets
   extraPlugins: rabbitmq_stomp
   persistence:
     enabled: false
