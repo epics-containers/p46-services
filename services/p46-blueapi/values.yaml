@@ -49,7 +49,7 @@ blueapi:
       enabled: true
     oidc:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
-      client_id: "blueapi-cli"
+      client_id: "blueapi"
     scratch:
       root: /dls_sw/htss/p46/scratch
       repositories:
@@ -58,7 +58,7 @@ blueapi:
         - name: htss-rig-bluesky
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git  
   initContainer:
-    enabled: true
+    enabled: false
 
 
 oauth2:
@@ -73,18 +73,10 @@ oauth2:
   #       secretKeyRef:
   #         name: blueapi-secret
   #         key: OAUTH2_PROXY_CLIENT_ID
-
-  ingress:
-    enabled: true
-    hosts:
-      - p46-blueapi.diamond.ac.uk
-    annotations:
-      nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
-    path: /
-    pathType: Prefix
   config:
     clientID: ${OAUTH2_PROXY_CLIENT_ID}
     clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
+    cookieSecret: 0rsB3dbPkTZbjohxf0vnjN2z73tK9UIUvaI0r7yaY0g=
     configFile: |-
       skip_provider_button = true
       silence_ping_logging=true
@@ -96,6 +88,14 @@ oauth2:
       "GET=^/config/oidc",
       "GET=^/healthz"
       ]
+  ingress:
+    enabled: true
+    hosts:
+      - p46-blueapi.diamond.ac.uk
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+    path: /
+    pathType: Prefix
   alphaConfig:
     enabled: true
     configData:
@@ -120,3 +120,5 @@ oauth2:
           values:
             - claim: access_token
               prefix: "Bearer "
+
+
