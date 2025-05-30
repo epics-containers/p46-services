@@ -63,11 +63,16 @@ blueapi:
 
 oauth2:
   extraEnvVars:
-    -name: OIDC_CLIENT_SECRET
-    valueFrom:
-      secretKeyRef:
-        name: blueapi-secret
-        key: OIDC_CLIENT_SECRET
+    - name: OAUTH2_PROXY_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: OAUTH2_PROXY_CLIENT_SECRET
+    - name: OAUTH2_PROXY_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: OAUTH2_PROXY_CLIENT_ID
 
   ingress:
     enabled: true
@@ -78,8 +83,8 @@ oauth2:
     path: /
     pathType: Prefix
   config:
-    clientID: blueapi 
-    clientSecret: ${OIDC_CLIENT_SECRET}
+    # clientID: blueapi 
+    # clientSecret: ${OIDC_CLIENT_SECRET}
     configFile: |-
       email_domains = [ "*" ]
       skip_provider_button = true
@@ -98,8 +103,8 @@ oauth2:
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
-          clientID: blueapi
-          clientSecret: ${OIDC_CLIENT_SECRET}
+          # clientID: blueapi
+          # clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
             emailClaim: sub
