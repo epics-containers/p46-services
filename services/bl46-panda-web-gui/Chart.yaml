@@ -1,5 +1,5 @@
 apiVersion: v2
-name: baremetal-service
+name: bl46-panda-web-gui
 description: Exposes a bare metal HTTP service via Kubernetes Service + optional Ingress
 type: application
 version: 0.1.0
