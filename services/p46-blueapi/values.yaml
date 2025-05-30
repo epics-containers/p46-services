@@ -62,6 +62,10 @@ blueapi:
 
 
 oauth2:
+  extraArgs:
+    - --client-id=blueapi
+    - --insecure-oidc-allow-unverified-email=true
+    - --skip-provide-button=true
   extraEnv:
     - name: OAUTH2_PROXY_CLIENT_SECRET
       valueFrom:
