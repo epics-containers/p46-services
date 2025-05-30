@@ -17,6 +17,7 @@ rabbitmq:
       containerPort: 61613
   service:
     type: LoadBalancer
+    loadBalancerIP: 172.23.168.212
     extraPorts:
       - name: stomp
         port: 61613
