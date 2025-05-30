@@ -30,6 +30,3 @@ rabbitmq:
       prometheus.io/port: "8080"
   networkPolicy:
     enabled: false
-  containerSecurityContext:
-    enabled: true
-    runAsUser: 0
