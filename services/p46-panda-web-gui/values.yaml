@@ -32,7 +32,7 @@ nginx:
     targetPort:
       http: 8080
       https: 8443
-    loadBalancerIP: 172.23.168.208 # hopefully matches bl46p-panda-01.diamond.ac.uk 
+    loadBalancerIP: 172.23.168.208 # in DNS this matches bl46p-panda-01.diamond.ac.uk this is manually set up to avoid an ingress
     externalTrafficPolicy: Local  # preserves source IP
 
   serverBlock: |
