@@ -62,17 +62,17 @@ blueapi:
 
 
 oauth2:
-  extraEnv:
-    - name: OAUTH2_PROXY_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: blueapi-secret
-          key: OAUTH2_PROXY_CLIENT_SECRET
-    - name: OAUTH2_PROXY_CLIENT_ID
-      valueFrom:
-        secretKeyRef:
-          name: blueapi-secret
-          key: OAUTH2_PROXY_CLIENT_ID
+  # extraEnv:
+  #   - name: OAUTH2_PROXY_CLIENT_SECRET
+  #     valueFrom:
+  #       secretKeyRef:
+  #         name: blueapi-secret
+  #         key: OAUTH2_PROXY_CLIENT_SECRET
+  #   - name: OAUTH2_PROXY_CLIENT_ID
+  #     valueFrom:
+  #       secretKeyRef:
+  #         name: blueapi-secret
+  #         key: OAUTH2_PROXY_CLIENT_ID
 
   ingress:
     enabled: true
@@ -86,12 +86,16 @@ oauth2:
     clientID: ${OAUTH2_PROXY_CLIENT_ID}
     clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
     configFile: |-
-      email_domains = [ "*" ]
       skip_provider_button = true
       silence_ping_logging=true
       cookie_refresh="1m"
       cookie_expire="30m"
       upstreams=["blueapi"]
+      email_domains = [ "*" ]
+      skip_auth_routes=[
+      "GET=^/config/oidc",
+      "GET=^/healthz"
+      ]
   alphaConfig:
     enabled: true
     configData:
