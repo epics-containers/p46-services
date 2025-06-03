@@ -1,14 +1,11 @@
-service:
-  name: baremetal-service
-  ports:
-    - name: http
-      port: 80
-      targetPort: 80
-    - name: http-alt
-      port: 8008
-      targetPort: 8008
-  endpoints:
-    - ip: 192.168.250.18
+proxy:
+  name: bl46-panda-web-gui
+  replicaCount: 1
+  target:
+    host: 192.168.250.18
+    port: 8008
+  image: nginx:1.25
+  servicePort: 80
 
 ingress:
   enabled: true
@@ -18,4 +15,5 @@ ingress:
   pathType: Prefix
   tls:
     enabled: false
-    secretName: ""  # required if tls.enabled is true
+    secretName: "" # required if tls.enabled is true
+
