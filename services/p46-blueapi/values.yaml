@@ -47,9 +47,9 @@ blueapi:
         password: guest
       host: p46-rabbitmq
       enabled: true
-    oidc:
-      well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
-      client_id: "blueapi-cli"
+   # oidc:
+   #   well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
+   #   client_id: "blueapi-cli"
     scratch:
       root: /dls_sw/htss/p46/scratch
       repositories:
