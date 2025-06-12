@@ -18,3 +18,4 @@ dependencies:
     alias: oauth2
     repository: https://oauth2-proxy.github.io/manifests
     version: 7.12.18
+    condition: oauth2-proxy.enabled
