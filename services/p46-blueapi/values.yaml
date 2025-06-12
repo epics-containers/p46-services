@@ -59,61 +59,60 @@ blueapi:
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
   initContainer:
     enabled: true
-
-oauth2:
-  enabled: false
-  proxyVarsAsSecrets: false
-  extraEnv:
-    - name: OAUTH2_PROXY_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: blueapi-secret
-          key: client-secret
-    - name: OAUTH2_PROXY_COOKIE_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: blueapi-secret
-          key: cookie-secret
-  config:
-    configFile: |-
-      skip_provider_button = true
-      skip_jwt_bearer_tokens = true
-      cookie_refresh="1m"
-      cookie_expire="30m"
-      email_domains = [ "*" ]
-      skip_auth_routes=[
-      "GET=^/config/oidc",
-      "GET=^/healthz"
-      ]
-  ingress:
-    enabled: true
-    hosts:
-      - p46-blueapi.diamond.ac.uk
-    annotations:
-      nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
-    path: /
-    pathType: Prefix
-  alphaConfig:
-    enabled: true
-    configData:
-      upstreamConfig:
-        proxyRawPath: true
-        upstreams:
-          - id: blueapi
-            path: /
-            uri: http://p46-blueapi
-      providers:
-        - provider: oidc
-          id: authn.diamond.ac.uk
-          clientID: blueapi
-          clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
-          oidcConfig:
-            insecureAllowUnverifiedEmail: true
-            emailClaim: sub
-            audienceClaims: ["aud"]
-            issuerURL: https://authn.diamond.ac.uk/realms/master
-      injectRequestHeaders:
-        - name: Authorization
-          values:
-            - claim: access_token
-              prefix: "Bearer "
+# oauth2:
+#   enabled: false
+#   proxyVarsAsSecrets: false
+#   extraEnv:
+#     - name: OAUTH2_PROXY_CLIENT_SECRET
+#       valueFrom:
+#         secretKeyRef:
+#           name: blueapi-secret
+#           key: client-secret
+#     - name: OAUTH2_PROXY_COOKIE_SECRET
+#       valueFrom:
+#         secretKeyRef:
+#           name: blueapi-secret
+#           key: cookie-secret
+#   config:
+#     configFile: |-
+#       skip_provider_button = true
+#       skip_jwt_bearer_tokens = true
+#       cookie_refresh="1m"
+#       cookie_expire="30m"
+#       email_domains = [ "*" ]
+#       skip_auth_routes=[
+#       "GET=^/config/oidc",
+#       "GET=^/healthz"
+#       ]
+#   ingress:
+#     enabled: true
+#     hosts:
+#       - p46-blueapi.diamond.ac.uk
+#     annotations:
+#       nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+#     path: /
+#     pathType: Prefix
+#   alphaConfig:
+#     enabled: true
+#     configData:
+#       upstreamConfig:
+#         proxyRawPath: true
+#         upstreams:
+#           - id: blueapi
+#             path: /
+#             uri: http://p46-blueapi
+#       providers:
+#         - provider: oidc
+#           id: authn.diamond.ac.uk
+#           clientID: blueapi
+#           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
+#           oidcConfig:
+#             insecureAllowUnverifiedEmail: true
+#             emailClaim: sub
+#             audienceClaims: ["aud"]
+#             issuerURL: https://authn.diamond.ac.uk/realms/master
+#       injectRequestHeaders:
+#         - name: Authorization
+#           values:
+#             - claim: access_token
+#               prefix: "Bearer "
