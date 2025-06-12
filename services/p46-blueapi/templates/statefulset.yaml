@@ -101,7 +101,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}{{ ternary "-debug" "" .Values.debug.enabled }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}-debug"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -127,12 +127,12 @@ spec:
             - mountPath: /var/run/nslcd
               name: nslcd
             {{- end }}
-          {{- if not .Values.debug.enabled }}
+          command:
+            - "blueapi"
           args:
             - "-c"
             - "/config/config.yaml"
             - "serve"
-          {{- end }}
           envFrom:
             - configMapRef:
                 name: {{ include "blueapi.fullname" . }}-otel-config
