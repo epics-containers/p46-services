@@ -45,7 +45,7 @@ blueapi:
       auth:
         username: guest
         password: guest
-      host: p46-rabbitmq
+      url: http://p46-rabbitmq-daq.diamond.ac.uk:61613
       enabled: true
     oidc:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
@@ -56,11 +56,11 @@ blueapi:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
         - name: htss-rig-bluesky
-          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git  
+          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
   initContainer:
     enabled: true
-
-
+    persistentVolume:
+      enabled: false
 oauth2:
   proxyVarsAsSecrets: false
   extraEnv:
