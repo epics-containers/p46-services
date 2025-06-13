@@ -19,7 +19,7 @@ blueapi:
       value: bl46p
       effect: NoSchedule
   ingress:
-    create: true
+    create: false
     host: p46-blueapi.diamond.ac.uk
   extraEnvVars:
     - name: BEAMLINE
