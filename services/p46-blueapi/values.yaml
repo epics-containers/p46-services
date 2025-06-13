@@ -58,6 +58,8 @@ worker:
         remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
 initContainer:
   enabled: false
+  persistentVolume:
+    enabled: false
 
 replicaCount: 1
 
