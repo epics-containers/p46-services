@@ -30,6 +30,8 @@ tracing:
     server:
       host: http://pxx-jaeger.p46-beamline.svc.cluster.local
 worker:
+  api:
+    url: http://0.0.0.0:8000/ # Allow non-loopback traffic
   env:
     sources:
       - kind: dodal
