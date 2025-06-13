@@ -1,174 +1,118 @@
-hostNetwork: false
-resources:
-  limits:
-    cpu: 1000m
-    memory: 500Mi
-  requests:
-    cpu: 500m
-    memory: 100Mi
-nodeSelector:
-  kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
-tolerations:
-  - key: nodetype
-    operator: Equal
-    value: training-rig
-    effect: NoSchedule
-  - key: beamline
-    operator: Equal
-    value: bl46p
-    effect: NoSchedule
-ingress:
-  create: true
-  host: p46-blueapi.diamond.ac.uk
-extraEnvVars:
-  - name: BEAMLINE
-    value: p46
+blueapi:
+  hostNetwork: false
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 500Mi
+    requests:
+      cpu: 500m
+      memory: 100Mi
+  nodeSelector:
+    kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
+  tolerations:
+    - key: nodetype
+      operator: Equal
+      value: training-rig
+      effect: NoSchedule
+    - key: beamline
+      operator: Equal
+      value: bl46p
+      effect: NoSchedule
+  ingress:
+    create: false
+    url: https://p46-blueapi.diamond.ac.uk
+  extraEnvVars:
+    - name: BEAMLINE
+      value: p46
 
-tracing:
-  otlp:
+  tracing:
+    otlp:
+      enabled: true
+      server:
+        host: http://pxx-jaeger.p46-beamline.svc.cluster.local
+  worker:
+    env:
+      sources:
+        - kind: dodal
+          module: dodal.beamlines.training_rig
+        - kind: planFunctions
+          module: htss_rig_bluesky.plans
+        - kind: planFunctions
+          module: dodal.plans
+      events:
+        broadcast_status_events: False
+    stomp:
+      auth:
+        username: guest
+        password: guest
+      url: http://p46-rabbitmq-daq.diamond.ac.uk:61613
+      enabled: true
+    oidc:
+      well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
+      client_id: "blueapi-cli"
+    scratch:
+      root: /dls_sw/htss/p46/scratch
+      repositories:
+        - name: dodal
+          remote_url: https://github.com/DiamondLightSource/dodal.git
+        - name: htss-rig-bluesky
+          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
+  initContainer:
     enabled: true
-    server:
-      host: http://pxx-jaeger.p46-beamline.svc.cluster.local
-worker:
-  api:
-    url: http://0.0.0.0:9010/ # Allow non-loopback traffic
-  env:
-    sources:
-      - kind: dodal
-        module: dodal.beamlines.training_rig
-      - kind: planFunctions
-        module: htss_rig_bluesky.plans
-      - kind: planFunctions
-        module: dodal.plans
-    events:
-      broadcast_status_events: False
-  stomp:
-    auth:
-      username: guest
-      password: guest
-    url: http://p46-rabbitmq-daq.diamond.ac.uk:61613
+
+oauth2:
+  proxyVarsAsSecrets: false
+  extraEnv:
+    - name: OAUTH2_PROXY_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: client-secret
+    - name: OAUTH2_PROXY_COOKIE_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: cookie-secret
+  config:
+    configFile: |-
+      skip_provider_button = true
+      skip_jwt_bearer_tokens = true
+      cookie_refresh="1m"
+      cookie_expire="30m"
+      email_domains = [ "*" ]
+      skip_auth_routes=[
+      "GET=^/config/oidc",
+      "GET=^/healthz"
+      ]
+  ingress:
     enabled: true
-  oidc:
-    well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
-    client_id: "blueapi-cli"
-  scratch:
-    root: /dls_sw/htss/p46/scratch
-    repositories:
-      - name: dodal
-        remote_url: https://github.com/DiamondLightSource/dodal.git
-      - name: htss-rig-bluesky
-        remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
-initContainer:
-  enabled: false
-  persistentVolume:
-    enabled: false
-
-replicaCount: 1
-
-image:
-  repository: ghcr.io/diamondlightsource/blueapi
-  pullPolicy: Always
-  # Overrides the image tag whose default is the chart appVersion.
-  # Do not set this to a package hash: https://github.com/DiamondLightSource/blueapi/issues/1046
-  tag: "0.16.0"
-
-imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
-serviceAccount:
-  # Specifies whether a service account should be created
-  create: false
-  # Annotations to add to the service account
-  annotations: {}
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name: ""
-
-podAnnotations: {}
-
-podSecurityContext: {}
-# fsGroup: 2000
-
-securityContext: {}
-# capabilities:
-#   drop:
-#   - ALL
-# readOnlyRootFilesystem: true
-# runAsNonRoot: true
-# runAsUser: 1000
-
-# Recommended for production to change service.type to ClusterIP and set up an Ingress
-service:
-  type: ClusterIP
-  port: 80
-
-initResources: {}
-# Can optionally specify separate resource constraints for the scratch setup container.
-# If left empty this defaults to the same as resources above.
-
-restartOnConfigChange: true
-
-listener:
-  enabled: true
-  resources: {}
-
-debug:
-  enabled: false
-# oauth2:
-#   enabled: false
-#   proxyVarsAsSecrets: false
-#   extraEnv:
-#     - name: OAUTH2_PROXY_CLIENT_SECRET
-#       valueFrom:
-#         secretKeyRef:
-#           name: blueapi-secret
-#           key: client-secret
-#     - name: OAUTH2_PROXY_COOKIE_SECRET
-#       valueFrom:
-#         secretKeyRef:
-#           name: blueapi-secret
-#           key: cookie-secret
-#   config:
-#     configFile: |-
-#       skip_provider_button = true
-#       skip_jwt_bearer_tokens = true
-#       cookie_refresh="1m"
-#       cookie_expire="30m"
-#       email_domains = [ "*" ]
-#       skip_auth_routes=[
-#       "GET=^/config/oidc",
-#       "GET=^/healthz"
-#       ]
-#   ingress:
-#     enabled: true
-#     hosts:
-#       - p46-blueapi.diamond.ac.uk
-#     annotations:
-#       nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
-#     path: /
-#     pathType: Prefix
-#   alphaConfig:
-#     enabled: true
-#     configData:
-#       upstreamConfig:
-#         proxyRawPath: true
-#         upstreams:
-#           - id: blueapi
-#             path: /
-#             uri: http://p46-blueapi
-#       providers:
-#         - provider: oidc
-#           id: authn.diamond.ac.uk
-#           clientID: blueapi
-#           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
-#           oidcConfig:
-#             insecureAllowUnverifiedEmail: true
-#             emailClaim: sub
-#             audienceClaims: ["aud"]
-#             issuerURL: https://authn.diamond.ac.uk/realms/master
-#       injectRequestHeaders:
-#         - name: Authorization
-#           values:
-#             - claim: access_token
-#               prefix: "Bearer "
+    hosts:
+      - p46-blueapi.diamond.ac.uk
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+    path: /
+    pathType: Prefix
+  alphaConfig:
+    enabled: true
+    configData:
+      upstreamConfig:
+        proxyRawPath: true
+        upstreams:
+          - id: blueapi
+            path: /
+            uri: http://p46-blueapi
+      providers:
+        - provider: oidc
+          id: authn.diamond.ac.uk
+          clientID: blueapi
+          clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
+          oidcConfig:
+            insecureAllowUnverifiedEmail: true
+            emailClaim: sub
+            audienceClaims: ["aud"]
+            issuerURL: https://authn.diamond.ac.uk/realms/master
+      injectRequestHeaders:
+        - name: Authorization
+          values:
+            - claim: access_token
+              prefix: "Bearer "
