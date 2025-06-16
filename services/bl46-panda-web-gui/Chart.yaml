@@ -1,6 +1,0 @@
-apiVersion: v2
-name: bl46-panda-web-gui
-description: NGINX reverse proxy to external bare-metal HTTP service
-type: application
-version: 0.1.0
-appVersion: "1.0"
