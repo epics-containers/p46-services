@@ -11,6 +11,7 @@ ioc-instance:
   # useHostNetwork - use host network for IOC - required for Channel Access
   # to work outside of the cluster
   hostNetwork: true
+<<<<<<< before updating
 
   # affinity and tolerations to get the right nodes on pollux
   securityContext:
@@ -40,3 +41,5 @@ ioc-instance:
       operator: Equal
       value: training-rig
       effect: NoSchedule
+=======
+>>>>>>> after updating
