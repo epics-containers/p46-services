@@ -59,6 +59,7 @@ blueapi:
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
     graylog:
       enabled: true
+      url: https://graylog.diamond.ac.uk:12232/
   initContainer:
     enabled: true
     persistentVolume:
