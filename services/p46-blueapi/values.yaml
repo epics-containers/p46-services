@@ -29,7 +29,7 @@ blueapi:
     otlp:
       enabled: true
       server:
-        host: http://pxx-jaeger.p46-beamline.svc.cluster.local
+        host: http://opentelemetry-collector.tracing
   worker:
     numtracker:
       url: https://numtracker.diamond.ac.uk/graphql
