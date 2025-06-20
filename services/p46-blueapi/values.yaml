@@ -34,7 +34,7 @@ blueapi:
     otlp:
       enabled: true
       server:
-        host: http://otel.tracing-dev.diamond.ac.uk
+        host: http://opentelemetry-collector.tracing
   worker:
     env:
       sources:
