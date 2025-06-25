@@ -11,7 +11,8 @@ rabbitmq:
     create: false
   serviceAccount:
     create: false
-    name: default-full-access-mounted
+  networkPolicy:
+    enabled: false
   extraContainerPorts:
     - name: stomp
       containerPort: 61613
@@ -22,4 +23,4 @@ rabbitmq:
       - name: stomp
         port: 61613
         targetPort: stomp
-
+  resourcesPreset: medium
