@@ -6,7 +6,7 @@ blueapi:
       memory: 4000Mi
     requests:
       cpu: 500m
-      memory: 100Mi
+      memory: 400Mi
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   tolerations:
