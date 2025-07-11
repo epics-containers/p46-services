@@ -40,7 +40,6 @@ blueapi:
     env:
       metadata:
         instrument: p46
-        instrument_session: cm42327-1
       sources:
       - kind: dodal
         module: dodal.beamlines.training_rig
