@@ -35,6 +35,8 @@ blueapi:
       server:
         host: http://opentelemetry-collector.tracing
   worker:
+    api:
+      url: http://0.0.0.0:8032/
     numtracker:
       url: https://numtracker.diamond.ac.uk/graphql
     env:
