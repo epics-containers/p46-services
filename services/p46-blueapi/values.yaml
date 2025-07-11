@@ -1,5 +1,5 @@
 blueapi:
-  hostNetwork: true
+  # hostNetwork: true
   resources:
     limits:
       cpu: 2000m
@@ -35,8 +35,8 @@ blueapi:
       server:
         host: http://opentelemetry-collector.tracing
   worker:
-    api:
-      url: http://0.0.0.0:8032/
+    # api:
+    #   url: http://0.0.0.0:8032/
     numtracker:
       url: https://numtracker.diamond.ac.uk/graphql
     env:
@@ -79,8 +79,8 @@ blueapi:
       # existingClaimName: foo
   securityContext:
     runAsUser: 36095
-    capabilities:
-      drop: ["NET_RAW", "AUDIT_WRITE", "CHOWN", "DAC_OVERRIDE", "FOWNER", "FSETID", "KILL", "MKNOD", "NET_BIND_SERVICE", "SETFCAP", "SETGID", "SETPCAP", "SETUID", "SYS_CHROOT", "AUDIT_CONTROL", "BLOCK_SUSPEND", "DAC_READ_SEARCH", "IPC_LOCK", "IPC_OWNER", "LEASE", "LINUX_IMMUTABLE", "MAC_ADMIN", "MAC_OVERRIDE", "SYS_ADMIN", "SYS_BOOT", "SYS_MODULE", "SYS_NICE", "SYS_PACCT", "SYS_MODULE", "SYS_PTRACE", "SYS_RESOURCE", "SYS_TIME", "SYS_TTY_CONFIG", "SYSLOG", "WAKE_ALARM"]
+  #   capabilities:
+  #     drop: ["NET_RAW", "AUDIT_WRITE", "CHOWN", "DAC_OVERRIDE", "FOWNER", "FSETID", "KILL", "MKNOD", "NET_BIND_SERVICE", "SETFCAP", "SETGID", "SETPCAP", "SETUID", "SYS_CHROOT", "AUDIT_CONTROL", "BLOCK_SUSPEND", "DAC_READ_SEARCH", "IPC_LOCK", "IPC_OWNER", "LEASE", "LINUX_IMMUTABLE", "MAC_ADMIN", "MAC_OVERRIDE", "SYS_ADMIN", "SYS_BOOT", "SYS_MODULE", "SYS_NICE", "SYS_PACCT", "SYS_MODULE", "SYS_PTRACE", "SYS_RESOURCE", "SYS_TIME", "SYS_TTY_CONFIG", "SYSLOG", "WAKE_ALARM"]
 
 oauth2:
   proxyVarsAsSecrets: false
