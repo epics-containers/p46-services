@@ -1,5 +1,5 @@
 blueapi:
-  hostNetwork: false
+  hostNetwork: true
   resources:
     limits:
       cpu: 2000m
@@ -54,13 +54,13 @@ blueapi:
       auth:
         username: guest
         password: guest
-      url: http://p46-rabbitmq-daq.diamond.ac.uk:61613
+      url: tcp://p46-rabbitmq-daq.diamond.ac.uk:61613
       enabled: true
     oidc:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
       client_id: "blueapi-cli"
     scratch:
-      root: /dls_sw/htss/p46/scratch
+      root: /workspaces_git/
       repositories:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
@@ -70,12 +70,16 @@ blueapi:
       level: "INFO"
       graylog:
         enabled: true
-        url: http://graylog-log-target.diamond.ac.uk:12231/
+        url: tcp://graylog-log-target.diamond.ac.uk:12231/
   initContainer:
     enabled: true
     persistentVolume:
       enabled: true
       # existingClaimName: foo
+  securityContext:
+    runAsUser: 36095
+    capabilities:
+      drop: ["ALL"]
 
 oauth2:
   proxyVarsAsSecrets: false
