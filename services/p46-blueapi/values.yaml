@@ -19,7 +19,7 @@ blueapi:
       value: bl46p
       effect: NoSchedule
   ingress:
-    enabled: false
+    enabled: true
     hosts:
       - host: p46-blueapi.diamond.ac.uk
         paths:
