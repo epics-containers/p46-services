@@ -1,12 +1,9 @@
 blueapi:
+  securityContext:
+    runAsUser: 36095
+    capabilities:
+      drop: ["ALL"]
   hostNetwork: false
-  resources:
-    limits:
-      cpu: 2000m
-      memory: 4000Mi
-    requests:
-      cpu: 500m
-      memory: 400Mi
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   tolerations:
