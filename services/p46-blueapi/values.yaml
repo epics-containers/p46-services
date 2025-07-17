@@ -1,5 +1,7 @@
 blueapi:
   hostNetwork: false
+  livenessProbe: null
+  readinessProbe: null
   resources:
     limits:
       cpu: 2000m
