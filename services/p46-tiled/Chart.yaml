@@ -12,4 +12,4 @@ type: application
 dependencies:
   - name: tiled
     version: "0.1.0-b17"
-    repository: "oci://ghcr.io/bluesky/tiled"
+    repository: "oci://ghcr.io/bluesky/charts"
