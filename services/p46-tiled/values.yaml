@@ -22,7 +22,7 @@ tiled:
     valueFrom:
       secretKeyRef:
         key: TILED_SINGLE_USER_API_KEY
-        name: tiled-secrets-
+        name: tiled-secret
   fullnameOverride: ""
   global: {}
   image:
