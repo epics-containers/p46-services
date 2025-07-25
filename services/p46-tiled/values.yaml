@@ -65,8 +65,7 @@ tiled:
   securityContext: {}
   service:
     type: LoadBalancer
-    port: 8020
-    targetPort: 8000
+    port: 8000
   serviceAccount:
     annotations: {}
     automount: true
