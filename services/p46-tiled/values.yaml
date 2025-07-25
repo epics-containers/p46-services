@@ -1,10 +1,4 @@
 tiled:
-  affinity: {}
-  autoscaling:
-    enabled: false
-    maxReplicas: 100
-    minReplicas: 1
-    targetCPUUtilizationPercentage: 80
   config:
     authentication:
       allow_anonymous_access: true
@@ -23,38 +17,8 @@ tiled:
       secretKeyRef:
         key: TILED_SINGLE_USER_API_KEY
         name: tiled-secret
-  fullnameOverride: ""
-  global: {}
-  image:
-    pullPolicy: Always
-    repository: ghcr.io/bluesky/tiled
-    tag: ""
-  imagePullSecrets: []
-  ingress:
-    annotations: {}
-    className: ""
-    enabled: false
-    hosts:
-    - host: chart-example.local
-      paths:
-      - path: /
-        pathType: ImplementationSpecific
-    tls: []
-  livenessProbe:
-    httpGet:
-      path: /healthz
-      port: http
-  nameOverride: ""
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
-  podAnnotations: {}
-  podLabels: {}
-  podSecurityContext: {}
-  readinessProbe:
-    httpGet:
-      path: /healthz
-      port: http
-  replicaCount: 1
   resources:
     limits:
       cpu: 1000m
@@ -62,15 +26,9 @@ tiled:
     requests:
       cpu: 500m
       memory: 2Gi
-  securityContext: {}
   service:
     type: LoadBalancer
     port: 8000
-  serviceAccount:
-    annotations: {}
-    automount: true
-    create: false
-    name: ""
   tolerations:
   - effect: NoSchedule
     key: nodetype
