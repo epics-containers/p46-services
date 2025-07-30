@@ -19,6 +19,14 @@ tiled:
         name: tiled-secret
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
+  ingress:
+    enabled: true
+    className: "nginx"
+    hosts:
+      - host: p46-tiled.diamond.ac.uk
+        paths:
+          - path: /
+            pathType: Prefix
   resources:
     limits:
       cpu: 1000m
@@ -26,9 +34,6 @@ tiled:
     requests:
       cpu: 500m
       memory: 2Gi
-  service:
-    type: LoadBalancer
-    port: 8000
   tolerations:
   - effect: NoSchedule
     key: nodetype
