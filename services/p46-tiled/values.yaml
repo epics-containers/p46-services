@@ -7,8 +7,8 @@ tiled:
         init_if_not_exists: true
         readable_storage:
         - /exports/mybeamline/data
-        uri: sqlite:////exports/mybeamline/tiled-catalog/catalog.db
-        writable_storage: /exports/mybeamline/tiled-catalog
+        uri: sqlite:////exports/mybeamline/tiled-catalog/catalog_.db
+        writable_storage: /exports/mybeamline/tiled-catalog_
       path: /
       tree: catalog
   extraEnvVars:
