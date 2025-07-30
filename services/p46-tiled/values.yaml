@@ -34,9 +34,6 @@ tiled:
     requests:
       cpu: 500m
       memory: 2Gi
-  service:
-    type: LoadBalancer
-    port: 8000
   tolerations:
   - effect: NoSchedule
     key: nodetype
