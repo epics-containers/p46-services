@@ -1,10 +1,10 @@
 rabbitmq:
   authentication:
     user:
-      value: admin
+      value: guest
     existingSecret: rabbitmq-secrets
     password:
-      secretKey: rabbitmq-password
+      value: guest
     erlangCookie:
       secretKey: rabbitmq-erlang-cookie
   plugins:
