@@ -1,4 +1,10 @@
 rabbitmq:
+  customConfig: |-
+    stomp.default_user = guest
+    stomp.default_pass = guest
+    log.console = true
+    log.console.level = info
+    log.console.use_colors = off
   authentication:
     user:
       value: guest
