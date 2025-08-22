@@ -67,7 +67,7 @@ blueapi:
         - name: htss-rig-bluesky
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
     logging:
-      level: "INFO"
+      level: "DEBUG"
       graylog:
         enabled: true
         url: tcp://graylog-log-target.diamond.ac.uk:12231/
