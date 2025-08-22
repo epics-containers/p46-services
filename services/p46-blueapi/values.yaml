@@ -53,7 +53,7 @@ blueapi:
       auth:
         username: guest
         password: guest
-      url: http://p46-rabbitmq-daq.diamond.ac.uk:61613
+      url: tcp://p46-rabbitmq-daq.diamond.ac.uk:61613
       enabled: true
     oidc:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
@@ -69,7 +69,7 @@ blueapi:
       level: "INFO"
       graylog:
         enabled: true
-        url: http://graylog-log-target.diamond.ac.uk:12231/
+        url: tcp://graylog-log-target.diamond.ac.uk:12231/
   initContainer:
     enabled: true
     persistentVolume:
