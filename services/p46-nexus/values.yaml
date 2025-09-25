@@ -33,12 +33,12 @@ nexus-file-converter:
         path: template.yaml
   - name: nexus-data
     hostPath:
-      path: /exports/mybeamline/p46/data/
+      path: /exports/mybeamline/data/
       type: DirectoryOrCreate
 
   volumeMounts:
   - name: nexus-data
-    mountPath: /exports/mybeamline/p46/data/
+    mountPath: /exports/mybeamline/data/
     mountPropagation: HostToContainer
   - name: nexus-template
     mountPath: /templates
