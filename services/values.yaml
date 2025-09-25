@@ -20,7 +20,6 @@ shared: &shared
     runAsUser: 37890
     runAsGroup: 37890
 
-
   # affinity chooses which servers to run on
   # Accelerator must set this for CIAs, Beamlines don't need it
   affinity:
