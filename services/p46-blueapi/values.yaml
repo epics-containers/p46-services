@@ -55,10 +55,17 @@ blueapi:
         password: guest
       url: tcp://p46-rabbitmq-daq.diamond.ac.uk:61613
       enabled: true
+    logging:
+      level: "INFO"
+      graylog:
+        enabled: true
+        url: http://graylog-log-target.diamond.ac.uk:12231/
     oidc:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
       client_id: "blueapi-cli"
       logout_redirect_endpoint: "oauth2/sign_out"
+    numtracker:
+      url: https://numtracker.diamond.ac.uk/graphql
     scratch:
       root: /dls_sw/htss/p46/scratch
       repositories:
@@ -128,6 +135,7 @@ oauth2:
             insecureAllowUnverifiedEmail: true
             emailClaim: sub
             audienceClaims: ["aud"]
+            extraAudiences: ["blueapi"]
             issuerURL: https://authn.diamond.ac.uk/realms/master
       injectRequestHeaders:
         - name: Authorization

@@ -56,8 +56,7 @@ nexus-file-converter:
     files:
       output:
         directory:
-          staticDirectory: /exports/mybeamline/p46/data/2024/cm11111-1
-        nameTemplate: <DATA_SESSION>
+          staticDirectory: ""  # explicitly empty, get from StartDocument metadata
         devices:
           types:
             det: NX_DETECTOR

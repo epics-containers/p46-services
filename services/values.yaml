@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://github.com/epics-containers/ec-helm-charts/releases/download/4.1.3/ioc-instance.schema.json
+# yaml-language-server: $schema=../.helm-shared/values.schema.json
 
 # shared values for all services
 
@@ -7,16 +7,22 @@ global:
   location: bl46p
   enabled: true
 
-ioc-instance:
-  # useHostNetwork - use host network for IOC - required for Channel Access
-  # to work outside of the cluster
+# shared settings for all IOC types
+shared: &shared
+  # hostNetwork
+  # set to true for Channel Access work outside of the cluster (or use a gateway)
   hostNetwork: true
 
   # affinity and tolerations to get the right nodes on pollux
+  # running as ixxdetector account uid,gid gives access to /dls/ixx/data
   securityContext:
+    allowPrivilegeEscalation: false
     runAsUser: 37890
     runAsGroup: 37890
 
+
+  # affinity chooses which servers to run on
+  # Accelerator must set this for CIAs, Beamlines don't need it
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -27,6 +33,8 @@ ioc-instance:
                 values:
                   - bl46p
 
+  # tolerations allow us to run on a tainted server
+  # Accelerator must set this for CIAs, Beamlines don't need it
   tolerations:
     - key: beamline
       operator: Equal
@@ -40,3 +48,15 @@ ioc-instance:
       operator: Equal
       value: training-rig
       effect: NoSchedule
+
+# shared settings for all ibek IOCs using the ioc-instance helm chart
+ioc-instance:
+  <<: *shared
+
+# shared settings for all fastcs IOCs using the fastcs helm chart
+fastcs:
+  <<: *shared
+
+# shared setting for all legacy IOCs using the dev-c7 helm chart
+dev-c7:
+  <<: *shared
