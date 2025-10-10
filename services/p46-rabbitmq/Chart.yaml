@@ -11,5 +11,5 @@ type: application
 
 dependencies:
   - name: rabbitmq
-    version: 2.1.12
+    version: 2.1.13
     repository: https://groundhog2k.github.io/helm-charts/
