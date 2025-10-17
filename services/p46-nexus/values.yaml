@@ -49,8 +49,12 @@ nexus-file-converter:
     management:
       otlp:
         tracing:
-          enabled: true
+          export:
+            enabled: true
           endpoint: "http://opentelemetry-collector.tracing:4318"
+    otlp:
+      enabled: true
+      endpoint: "http://opentelemetry-collector.tracing:4318"
     micrometer:
       observations:
         annotations:
