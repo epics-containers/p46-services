@@ -46,6 +46,13 @@ nexus-file-converter:
   application:
     server:
       port: 8084
+    management:
+      tracing:
+        enabled: true
+    micrometer:
+      observations:
+        annotations:
+          enabled: true
     spring:
       profiles:
         active: rabbitmq
