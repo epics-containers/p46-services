@@ -51,7 +51,7 @@ nexus-file-converter:
         tracing:
           export:
             enabled: true
-          endpoint: "http://opentelemetry-collector.tracing"
+          endpoint: "http://opentelemetry-collector.tracing:4318/v1/traces"
     otlp:
       enabled: true
       endpoint: "http://opentelemetry-collector.tracing"
