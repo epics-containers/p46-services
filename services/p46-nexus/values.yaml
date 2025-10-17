@@ -47,8 +47,10 @@ nexus-file-converter:
     server:
       port: 8084
     management:
-      tracing:
-        enabled: true
+      otlp:
+        tracing:
+          enabled: true
+          endpoint: "http://opentelemetry-collector.tracing:4318"
     micrometer:
       observations:
         annotations:
