@@ -61,8 +61,8 @@ blueapi:
         enabled: true
         url: http://graylog-log-target.diamond.ac.uk:12231/
     oidc:
-      well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
-      client_id: "blueapi-cli"
+      well_known_url: "https://identity-dev.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
+      client_id: "p46-blueapi"
       logout_redirect_endpoint: "oauth2/sign_out"
     numtracker:
       url: https://numtracker.diamond.ac.uk/graphql
@@ -108,7 +108,7 @@ oauth2:
       "GET=^/config/oidc",
       "GET=^/healthz"
       ]
-      whitelist_domains=["authn.diamond.ac.uk"]
+      whitelist_domains=["identity-dev.diamond.ac.uk"]
   ingress:
     enabled: true
     hosts:
@@ -128,15 +128,14 @@ oauth2:
             uri: http://p46-blueapi
       providers:
         - provider: oidc
-          id: authn.diamond.ac.uk
+          id: identity-dev.diamond.ac.uk
           clientID: blueapi
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
             emailClaim: sub
             audienceClaims: ["aud"]
-            extraAudiences: ["blueapi"]
-            issuerURL: https://authn.diamond.ac.uk/realms/master
+            issuerURL: https://identity-dev.diamond.ac.uk/realms/dls/
       injectRequestHeaders:
         - name: Authorization
           values:
