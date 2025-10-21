@@ -134,7 +134,3 @@ oauth2:
           values:
             - claim: access_token
               prefix: "Bearer "
-      injectResponseHeaders:
-        - name: Identity
-          values:
-            - claim: access_token
