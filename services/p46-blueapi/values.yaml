@@ -135,7 +135,7 @@ oauth2:
             insecureAllowUnverifiedEmail: true
             emailClaim: sub
             audienceClaims: ["aud"]
-            issuerURL: https://identity-dev.diamond.ac.uk/realms/dls/
+            issuerURL: https://identity-dev.diamond.ac.uk/realms/dls
       injectRequestHeaders:
         - name: Authorization
           values:
