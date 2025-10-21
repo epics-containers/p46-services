@@ -62,7 +62,7 @@ blueapi:
     oidc:
       well_known_url: "https://identity-dev.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
       client_id: "p46-blueapi"
-      client_audience: "p46-blueapi"
+      client_audience: "account"
       logout_redirect_endpoint: "oauth2/sign_out"
     scratch:
       root: /dls_sw/htss/p46/scratch
