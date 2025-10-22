@@ -122,7 +122,7 @@ oauth2:
       providers:
         - provider: oidc
           id: identity-dev.diamond.ac.uk
-          clientID: p46-blueapi
+          clientID: foobarbaz
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
@@ -134,3 +134,7 @@ oauth2:
           values:
             - claim: access_token
               prefix: "Bearer "
+      injectResponseHeaders:
+        - name: Identity
+          values:
+            - claim: access_token
