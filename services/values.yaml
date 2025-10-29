@@ -3,14 +3,14 @@
 # shared values for all services
 
 global:
-  ioc_group: p46
+  domain: p46
   location: bl46p
   enabled: true
 
 # shared settings for all IOC types
 shared: &shared
   # hostNetwork
-  # set to true for Channel Access work outside of the cluster (or use a gateway)
+  # set to true for Channel Access to work outside of the cluster (or use a gateway)
   hostNetwork: true
 
   # affinity and tolerations to get the right nodes on pollux
@@ -50,10 +50,6 @@ shared: &shared
 
 # shared settings for all ibek IOCs using the ioc-instance helm chart
 ioc-instance:
-  <<: *shared
-
-# shared settings for all fastcs IOCs using the fastcs helm chart
-fastcs:
   <<: *shared
 
 # shared setting for all legacy IOCs using the dev-c7 helm chart
