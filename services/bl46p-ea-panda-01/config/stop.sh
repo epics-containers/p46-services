@@ -1,2 +1,1 @@
-# a stop script for K8S to call when closing the container
-exit 0
+# no operations needed to stop panda IOC in this setup
