@@ -1,0 +1,13 @@
+apiVersion: v2
+name: p46-glazed
+description: glazed deployment for p46
+version: 0.1.0
+
+appVersion: 0.1.0
+
+type: application
+
+dependencies:
+  - name: glazed
+    repository: "oci://ghcr.io/diamondlightsource/charts"
+    version: "0.1.0-alpha.4"
