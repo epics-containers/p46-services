@@ -17,6 +17,8 @@ nexus-file-converter:
       value: "http/protobuf"
     - name: OTEL_EXPORTER_OTLP_ENDPOINT
       value: "http://opentelemetry-collector.tracing:4318"
+    - name: OTEL_LOG_LEVEL
+      value: debug
 
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
