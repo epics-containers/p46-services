@@ -1,12 +1,4 @@
 blueapi:
-  hostNetwork: false
-  resources:
-    limits:
-      cpu: 2000m
-      memory: 4000Mi
-    requests:
-      cpu: 500m
-      memory: 400Mi
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   tolerations:
@@ -18,6 +10,7 @@ blueapi:
       operator: Equal
       value: bl46p
       effect: NoSchedule
+
   ingress:
     enabled: false
     hosts:
@@ -30,6 +23,14 @@ blueapi:
       value: p46
     - name: INSTRUMENT
       value: p46
+    - name: EPICS_PVA_NAME_SERVERS
+      value: p46-epics-gateways
+    - name: EPICS_CA_NAME_SERVERS
+      value: p46-epics-gateways
+    - name: EPICS_PVA_AUTO_ADDR_LIST
+      value: NO
+    - name: EPICS_CA_AUTO_ADDR_LIST
+      value: NO
 
   tracing:
     otlp:
