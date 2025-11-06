@@ -1,4 +1,6 @@
 blueapi:
+  debug:
+    enabled: true
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   tolerations:
