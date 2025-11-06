@@ -1,7 +1,8 @@
 glazed:
-  enabled: true
-  toml: |-
-    bind_address = "0.0.0.0:3000"
+  customConfig:
+    enabled: true
+    toml: |-
+      bind_address = "0.0.0.0:3000"
 
-    [tiled_client]
-    address = "http://p46-tiled:8000"
+      [tiled_client]
+      address = "http://p46-tiled:8000"
