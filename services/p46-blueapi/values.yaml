@@ -24,9 +24,9 @@ blueapi:
     - name: INSTRUMENT
       value: p46
     - name: EPICS_PVA_NAME_SERVERS
-      value: p46-epics-gateways
+      value: p46-epics-gateways:9075
     - name: EPICS_CA_NAME_SERVERS
-      value: p46-epics-gateways
+      value: p46-epics-gateways:9064
     - name: EPICS_PVA_AUTO_ADDR_LIST
       value: "NO"
     - name: EPICS_CA_AUTO_ADDR_LIST
