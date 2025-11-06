@@ -1,0 +1,7 @@
+apiVersion: v2
+appVersion: 1.6.5
+description: A Helm chart deploying a worker pod that runs Bluesky plans
+home: https://github.com/DiamondLightSource/blueapi
+name: blueapi
+type: application
+version: 1.6.5
