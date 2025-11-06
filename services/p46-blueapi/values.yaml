@@ -62,6 +62,10 @@ blueapi:
       level: "INFO"
       graylog:
         enabled: true
+<<<<<<< before updating
+=======
+    
+>>>>>>> after updating
     oidc:
       well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
       client_id: "blueapi-cli"
