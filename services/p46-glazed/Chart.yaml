@@ -10,4 +10,4 @@ type: application
 dependencies:
   - name: glazed
     repository: "oci://ghcr.io/diamondlightsource/charts"
-    version: "0.1.0-alpha.6"
+    version: "0.1.0-alpha.8"
