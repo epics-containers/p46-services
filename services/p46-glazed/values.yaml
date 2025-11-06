@@ -1,5 +1,5 @@
 glazed:
-  enabled: false
+  enabled: true
   toml: |-
     bind_address = "0.0.0.0:3000"
 
