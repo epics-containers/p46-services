@@ -57,7 +57,7 @@ blueapi:
       auth:
         username: guest
         password: guest
-      url: tcp://p46-rabbitmq-daq.diamond.ac.uk:61613
+      url: tcp://p46-rabbitmq:61613
       enabled: true
     logging:
       level: "INFO"
