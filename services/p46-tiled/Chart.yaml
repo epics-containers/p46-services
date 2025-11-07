@@ -13,3 +13,6 @@ dependencies:
   - name: tiled
     version: "0.1.0-b29"
     repository: "oci://ghcr.io/bluesky/charts"
+  - name: glazed
+    version: "0.5.0"
+    repository: "oci://ghcr.io/diamondjoseph/charts"
