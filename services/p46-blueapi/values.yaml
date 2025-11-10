@@ -1,4 +1,6 @@
 blueapi:
+  image:
+    tag: "1.7.2-a1"
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   tolerations:
