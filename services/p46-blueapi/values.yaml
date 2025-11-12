@@ -1,16 +1,4 @@
 blueapi:
-  nodeSelector:
-    kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
-  tolerations:
-    - key: nodetype
-      operator: Equal
-      value: training-rig
-      effect: NoSchedule
-    - key: beamline
-      operator: Equal
-      value: bl46p
-      effect: NoSchedule
-
   ingress:
     enabled: false
     hosts:
