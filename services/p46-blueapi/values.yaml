@@ -114,7 +114,7 @@ oauth2:
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
-          clientID: blueapi
+          clientID: p46-blueapi
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
