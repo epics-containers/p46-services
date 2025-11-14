@@ -2,7 +2,7 @@ nexus-file-converter:
   debug:
   # exposes Java debug listener on port 5005 on a ClusterIP, access it with
   # kubectl port-forward svc/daq-nexus-nexus-file-converter-debug-port 5005:5005 -n p46-beamline
-    enabled: false
+    enabled: true
     suspend: false
   beamline: p46
   template:
