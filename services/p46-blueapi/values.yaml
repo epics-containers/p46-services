@@ -1,4 +1,6 @@
 blueapi:
+  image:
+    repository: ghcr.io/diamondjoseph/blueapi
   ingress:
     enabled: false
     hosts:
