@@ -1,4 +1,6 @@
 blueapi:
+  debug:
+    enabled: true
   image:
     repository: ghcr.io/diamondjoseph/blueapi
   ingress:
