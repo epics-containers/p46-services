@@ -13,6 +13,7 @@ tiled:
         args:
           audience: account
           client_id: p46-blueapi
+          device_flow_client_id: p46-blueapi
           well_known_uri: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
           scopes:
             - openid
