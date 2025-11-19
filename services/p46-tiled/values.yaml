@@ -2,20 +2,7 @@ tiled:
   extraEnvVars:
   - name: FOO
     value: bar
-  volumes:
-    - name: storage
-      emptyDir:
-        sizeLimit: 500Mi
 
-
-  # Additional volumeMounts on the output Deployment definition.
-  volumeMounts:
-    - name: config
-      mountPath: "/deploy/config"
-      readOnly: true
-    - name: storage
-      mountPath: "/storage"
-      readOnly: false
   image:
     repository: ghcr.io/zohebshaikh/tiled
     tag: 0.3.1
@@ -93,12 +80,17 @@ tiled:
   - mountPath: /exports/mybeamline
     mountPropagation: HostToContainer
     name: data
+  - name: storage
+    mountPath: "/storage"
+    readOnly: false
   volumes:
   - hostPath:
       path: /exports/mybeamline
       type: DirectoryOrCreate
     name: data
-
+  - name: storage
+    emptyDir:
+      sizeLimit: 500Mi
 glazed:
   image:
     repository: ghcr.io/diamondjoseph/glazed
