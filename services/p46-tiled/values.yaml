@@ -1,4 +1,7 @@
 tiled:
+  image:
+    repository: ghcr.io/zohebshaikh/tiled
+    tag: 0.3.3
   config:
     authentication:
       allow_anonymous_access: true
