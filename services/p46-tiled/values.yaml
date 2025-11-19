@@ -146,9 +146,9 @@ oauth2:
       upstreamConfig:
         proxyRawPath: true
         upstreams:
-          - id: blueapi
+          - id: tiled
             path: /
-            uri: http://p46-tiled
+            uri: http://p46-tiled:8000
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
