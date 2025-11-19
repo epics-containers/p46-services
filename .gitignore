@@ -4,6 +4,6 @@
 venv*
 .venv*
 **/Chart.lock
-**/charts
+# **/charts
 **/*copy
 .ci_work
