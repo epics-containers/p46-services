@@ -8,6 +8,7 @@ tiled:
   config:
     database:
       uri: sqlite:////storage/foo.db
+      init_if_not_exists: true
     authentication:
       secret_keys:
       - SECRET
