@@ -1,4 +1,7 @@
 tiled:
+  extraEnvVars:
+  - name: FOO
+    value: bar
   image:
     repository: ghcr.io/zohebshaikh/tiled
     tag: 0.3.3
