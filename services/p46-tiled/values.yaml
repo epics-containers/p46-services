@@ -7,7 +7,7 @@ tiled:
     tag: 0.3.1
   config:
     database:
-      uri: sqlite:////storage/catalog.db
+      uri: sqlite:////storage/foo.db
     authentication:
       secret_keys:
       - SECRET
