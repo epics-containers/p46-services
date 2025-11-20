@@ -147,10 +147,10 @@ oauth2:
         proxyRawPath: true
         upstreams:
           - id: blueapi
-            path: /blueapi
+            path: ^/blueapi/$
             uri: http://p46-blueapi
           - id: tiled
-            path: /tiled
+            path: ^/tiled/$
             uri: http://p46-tiled:8000
       providers:
         - provider: oidc
