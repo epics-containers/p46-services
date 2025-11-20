@@ -29,7 +29,7 @@ tiled:
     access_control:
       access_policy: "tiled.access_control.access_policies:ExternalPolicyDecisionPoint"
       args:
-        authorization_provider: http://p46-opa/v1/data/subject_session/
+        authorization_provider: http://p46-opa:8181/v1/data/subject_session/
         audience: account
         node_access: "allow"
         filter_nodes: "tags"
