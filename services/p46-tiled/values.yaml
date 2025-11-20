@@ -149,6 +149,9 @@ oauth2:
           - id: tiled
             path: /
             uri: http://p46-tiled:8000
+          - id: blueapi
+            path: /blueapi
+            uri: http://p46-blueapi
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
