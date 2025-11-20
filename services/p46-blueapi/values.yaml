@@ -69,7 +69,7 @@ blueapi:
         - name: htss-rig-bluesky
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
     tiled:
-      enabled: true
+      enabled: false
       url: "http://p46-tiled:8000"
   initContainer:
     enabled: true

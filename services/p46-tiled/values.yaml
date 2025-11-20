@@ -12,19 +12,19 @@ tiled:
     authentication:
       secret_keys:
       - SECRET
-      providers:
-      - provider: keycloak_oidc
-        authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
-        args:
-          audience: account
-          client_id: p46-blueapi
-          device_flow_client_id: p46-blueapi
-          well_known_uri: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
-          scopes:
-            - openid
-            - email
-            - profile
-          confirmation_message: "You have logged in with Proxied OIDC as {id}."
+      # providers:
+      # - provider: keycloak_oidc
+      #   authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
+      #   args:
+      #     audience: account
+      #     client_id: p46-blueapi
+      #     device_flow_client_id: p46-blueapi
+      #     well_known_uri: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
+      #     scopes:
+      #       - openid
+      #       - email
+      #       - profile
+      #     confirmation_message: "You have logged in with Proxied OIDC as {id}."
 
     # access_control:
     #   access_policy: "tiled.access_control.access_policies:ExternalPolicyDecisionPoint"
