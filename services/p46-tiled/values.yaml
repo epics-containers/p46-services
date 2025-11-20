@@ -26,14 +26,15 @@ tiled:
             - profile
           confirmation_message: "You have logged in with Proxied OIDC as {id}."
 
-    access_control:
-      access_policy: "tiled.access_control.access_policies:ExternalPolicyDecisionPoint"
-      args:
-        authorization_provider: http://p46-opa:8181/v1/data/subject_session/
-        audience: account
-        node_access: "allow"
-        filter_nodes: "tags"
-        scopes_access: "scopes"
+    # access_control:
+    #   access_policy: "tiled.access_control.access_policies:ExternalPolicyDecisionPoint"
+    #   args:
+    #     authorization_provider: http://p46-opa:8181/v1/data/subject_session/
+    #     audience: account
+    #     node_access: "allow"
+    #     filter_nodes: "tags"
+    #     scopes_access: "scopes"
+    allow_anonymous_access: true
 
     trees:
       - path: /
@@ -133,7 +134,7 @@ oauth2:
       ]
       whitelist_domains=["authn.diamond.ac.uk"]
   ingress:
-    enabled: true
+    enabled: false
     hosts:
       - p46-blueapi.diamond.ac.uk
     annotations:
