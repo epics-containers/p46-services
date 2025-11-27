@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: opa-config
+data:
+  config.yaml: |
+    services:
+      diamond-bundler:
+        url: https://authz.diamond.ac.uk
+        credentials:
+          bearer:
+            token: ${BUNDLER_BEARER_TOKEN}
+      ghcr:
+        url: https://ghcr.io
+        type: oci
+    bundles:
+      diamond-permissionables:
+        service: diamond-bundler
+        resource: bundle.tar.gz
+        polling:
+          min_delay_seconds: 10
+          max_delay_seconds: 60
+      diamond-policies:
+        service: ghcr
+        resource: ghcr.io/zohebshaikh/authz-policy:0.0.20
+        polling:
+          min_delay_seconds: 30
+          max_delay_seconds: 120
