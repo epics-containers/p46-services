@@ -1,22 +1,53 @@
 tiled:
+  extraEnvVars:
+  - name: FOO
+    value: bar
+  image:
+    repository: ghcr.io/zohebshaikh/tiled
+    tag: 0.4.11
   config:
+    database:
+      uri: sqlite:////storage/foo.db
+      init_if_not_exists: true
     authentication:
       allow_anonymous_access: true
+      secret_keys:
+      - SECRET
+      providers:
+      - provider: keycloak_oidc
+        authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
+        args:
+          audience: account
+          client_id: p46-blueapi
+          device_flow_client_id: blueapi-cli
+          well_known_uri: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
+          scopes:
+            - openid
+            - email
+            - profile
+          confirmation_message: "You have logged in with Proxied OIDC as {id}."
+
+    access_control:
+      access_policy: "tiled.access_control.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
+      args:
+        authorization_provider: http://p46-opa:8181/v1/data/diamond/policy/
+        token_audience: account
+        empty_access_blob_public: true
     trees:
-    - args:
-        init_if_not_exists: true
-        readable_storage:
-        - /exports/mybeamline/data
-        uri: sqlite:////exports/mybeamline/tiled-catalog/catalog.db
-        writable_storage: /exports/mybeamline/tiled-catalog
-      path: /
-      tree: catalog
-  extraEnvVars:
-  - name: TILED_SINGLE_USER_API_KEY
-    valueFrom:
-      secretKeyRef:
-        key: TILED_SINGLE_USER_API_KEY
-        name: tiled-secret
+      - path: /
+        tree: catalog
+        args:
+          uri: "sqlite:////storage/catalog.db"
+          writable_storage: "/storage/data"
+          # This creates the database if it does not exist. This is convenient, but in
+          # a horizontally-scaled deployment, this can be a race condition and multiple
+          # containers may simultaneously attempt to create the database.
+          # If that is a problem, set this to false, and run:
+          #
+          # tiled catalog init URI
+          #
+          # separately.
+          init_if_not_exists: true
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   ingress:
@@ -50,12 +81,17 @@ tiled:
   - mountPath: /exports/mybeamline
     mountPropagation: HostToContainer
     name: data
+  - name: storage
+    mountPath: "/storage"
+    readOnly: false
   volumes:
   - hostPath:
       path: /exports/mybeamline
       type: DirectoryOrCreate
     name: data
-
+  - name: storage
+    emptyDir:
+      sizeLimit: 500Mi
 glazed:
   image:
     repository: ghcr.io/diamondjoseph/glazed
@@ -66,3 +102,70 @@ glazed:
 
       [tiled_client]
       address = "http://p46-services:8000"
+
+
+oauth2:
+  proxyVarsAsSecrets: false
+  extraEnv:
+    - name: OAUTH2_PROXY_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: client-secret
+    - name: OAUTH2_PROXY_COOKIE_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: cookie-secret
+  config:
+    configFile: |-
+      skip_provider_button = true
+      skip_jwt_bearer_tokens = true
+      cookie_refresh="1m"
+      cookie_expire="30m"
+      email_domains = [ "*" ]
+      skip_auth_routes=[
+      "GET=^/",
+      "GET=^/api/v1/",
+      "GET=^/api/v1/metadata"
+      ]
+      whitelist_domains=["authn.diamond.ac.uk"]
+  ingress:
+    enabled: false
+    hosts:
+      - p46-blueapi.diamond.ac.uk
+    annotations:
+      nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
+    path: /
+    pathType: Prefix
+  alphaConfig:
+    enabled: true
+    configData:
+      upstreamConfig:
+        proxyRawPath: true
+        upstreams:
+          - id: tiled
+            path: /
+            uri: http://p46-tiled:8000
+      providers:
+        - provider: oidc
+          id: authn.diamond.ac.uk
+          clientID: p46-blueapi
+          clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
+          oidcConfig:
+            insecureAllowUnverifiedEmail: true
+            emailClaim: sub
+            audienceClaims: ["aud"]
+            extraAudiences: ["blueapi"]
+            issuerURL: https://authn.diamond.ac.uk/realms/master
+      injectRequestHeaders:
+        - name: Authorization
+          values:
+            - claim: access_token
+              prefix: "Bearer "
+      injectResponseHeaders:
+        - name: Identity
+          values:
+            - claim: access_token
+  service:
+    type: LoadBalancer

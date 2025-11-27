@@ -16,3 +16,7 @@ dependencies:
   - name: glazed
     version: "0.5.0"
     repository: "oci://ghcr.io/diamondjoseph/charts"
+  - name: oauth2-proxy
+    alias: oauth2
+    repository: https://oauth2-proxy.github.io/manifests
+    version: 8.5.0
