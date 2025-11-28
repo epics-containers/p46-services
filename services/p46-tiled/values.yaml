@@ -4,7 +4,7 @@ tiled:
     value: bar
   image:
     repository: ghcr.io/zohebshaikh/tiled
-    tag: 0.4.11
+    tag: 0.4.12
   config:
     database:
       uri: sqlite:////storage/foo.db
@@ -21,11 +21,7 @@ tiled:
           client_id: p46-blueapi
           device_flow_client_id: blueapi-cli
           well_known_uri: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
-          scopes:
-            - openid
-            - email
-            - profile
-          confirmation_message: "You have logged in with Proxied OIDC as {id}."
+          confirmation_message: "You have logged in with authn.diamond.ac.uk as {id}."
 
     access_control:
       access_policy: "tiled.access_control.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
