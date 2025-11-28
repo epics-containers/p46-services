@@ -17,6 +17,8 @@ tiled:
       - provider: keycloak_oidc
         authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
         args:
+          scopes:
+          - openid
           audience: account
           client_id: p46-blueapi
           device_flow_client_id: blueapi-cli
