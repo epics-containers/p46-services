@@ -1,5 +1,6 @@
 blueapi:
-  
+  debug:
+    enabled: true  
   ingress:
     enabled: false
     hosts:
