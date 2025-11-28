@@ -8,3 +8,13 @@ dependencies:
   - name: epics-gateways
     version: 2025.11.1
     repository: "oci://ghcr.io/epics-containers"
+apiVersion: v2
+name: ec-gateways
+version: 1.0.0
+
+type: application
+
+dependencies:
+  - name: epics-gateways
+    version: 2025.10.2
+    repository: "oci://ghcr.io/epics-containers"
