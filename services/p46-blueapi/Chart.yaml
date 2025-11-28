@@ -12,7 +12,7 @@ type: application
 dependencies:
   - name: blueapi
     # 1.9.0 + tiled changes
-    version: "0.1.13"
+    version: "0.1.14"
     repository: "oci://ghcr.io/diamondjoseph/charts"
 
   - name: oauth2-proxy
