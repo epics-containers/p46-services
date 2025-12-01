@@ -4,7 +4,7 @@ tiled:
     value: bar
   image:
     repository: ghcr.io/zohebshaikh/tiled
-    tag: 0.4.12
+    tag: 0.4.13
   config:
     database:
       uri: sqlite:////storage/foo.db
@@ -17,8 +17,6 @@ tiled:
       - provider: keycloak_oidc
         authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
         args:
-          scopes:
-          - openid
           audience: account
           client_id: p46-blueapi
           device_flow_client_id: blueapi-cli
