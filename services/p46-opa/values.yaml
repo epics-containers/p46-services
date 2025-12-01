@@ -73,9 +73,9 @@ ingress:
     # kubernetes.io/tls-acme: "true"
   hosts:
     - host: p46-blueapi.diamond.ac.uk
-    #   paths:
-    #     - path: /
-    #       pathType: ImplementationSpecific
+      paths:
+        - path: /
+          pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
