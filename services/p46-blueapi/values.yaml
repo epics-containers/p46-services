@@ -105,7 +105,7 @@ oauth2:
       ]
       whitelist_domains=["authn.diamond.ac.uk"]
   ingress:
-    enabled: true
+    enabled: false
     hosts:
       - p46-blueapi.diamond.ac.uk
     annotations:
