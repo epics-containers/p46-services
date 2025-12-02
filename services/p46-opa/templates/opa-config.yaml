@@ -22,7 +22,7 @@ data:
           max_delay_seconds: 60
       diamond-policies:
         service: ghcr
-        resource: ghcr.io/diamondjoseph/authz-policy:0.1.11
+        resource: ghcr.io/diamondjoseph/authz-policy:0.1.13
         polling:
           min_delay_seconds: 30
           max_delay_seconds: 120
