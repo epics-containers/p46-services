@@ -2,7 +2,7 @@ blueapi:
   debug:
     enabled: true
   image:
-    repository: ghcr.io/zohebshaikh/blueapi
+    repository: ghcr.io/diamondjoseph/blueapi
   ingress:
     enabled: false
     hosts:
