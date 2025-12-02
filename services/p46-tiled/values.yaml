@@ -49,7 +49,7 @@ tiled:
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   ingress:
-    enabled: true
+    enabled: false
     className: "nginx"
     hosts:
       - host: p46-tiled.diamond.ac.uk
