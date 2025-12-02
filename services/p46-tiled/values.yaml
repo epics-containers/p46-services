@@ -49,7 +49,7 @@ tiled:
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   ingress:
-    enabled: false
+    enabled: true
     className: "nginx"
     hosts:
       - host: p46-tiled.diamond.ac.uk
@@ -128,7 +128,7 @@ oauth2:
       ]
       whitelist_domains=["authn.diamond.ac.uk"]
   ingress:
-    enabled: true
+    enabled: false
     hosts:
       - p46-tiled.diamond.ac.uk
     annotations:
