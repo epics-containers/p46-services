@@ -71,7 +71,7 @@ blueapi:
         - name: tiled
           remote_url: https://github.com/zohebshaikh/tiled.git
     tiled:
-      enabled: true
+      enabled: false
       url: "http://p46-tiled:8000/api/v1/"
   initContainer:
     enabled: true
