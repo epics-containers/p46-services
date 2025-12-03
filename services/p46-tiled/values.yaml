@@ -138,17 +138,21 @@ oauth2:
         proxyRawPath: true
         upstreams:
           - id: tiled
-            path: /tiled/
+            path: /tiled/(.*)
             uri: http://p46-tiled:8000
+            rewriteTarget: /$1
           - id: glazed
-            path: /glazed/
+            path: /glazed/(.*)
             uri: http://p46-tiled-glazed:3000
+            rewriteTarget: /$1
           - id: opa
-            path: /opa/
+            path: /opa/(.*)
             uri: http://p46-opa:8181
+            rewriteTarget: /$1
           - id: blueapi
-            path: /blueapi/
+            path: /blueapi/(.*)
             uri: http://p46-blueapi
+            rewriteTarget: /$1
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
