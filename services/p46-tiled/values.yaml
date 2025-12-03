@@ -138,16 +138,16 @@ oauth2:
         proxyRawPath: true
         upstreams:
           - id: tiled
-            path: /tiled
+            path: /tiled/
             uri: http://p46-tiled:8000
           - id: glazed
-            path: /glazed
+            path: /glazed/
             uri: http://p46-tiled-glazed:3000
           - id: opa
-            path: /opa
+            path: /opa/
             uri: http://p46-opa:8181
           - id: blueapi
-            path: /blueapi
+            path: /blueapi/
             uri: http://p46-blueapi
       providers:
         - provider: oidc
