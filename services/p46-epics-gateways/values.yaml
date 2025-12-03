@@ -1,6 +1,3 @@
 epics-gateways:
   # switch to developer image for debugging
-  image: ghcr.io/epics-containers/epics-gateways-developer:2025.11.1
-
-  # needs to be a server in controls dev network
-  nodeName: bl46p-ea-serv-01.diamond.ac.uk
+  image: ghcr.io/epics-containers/epics-gateways-developer:2025.7.4

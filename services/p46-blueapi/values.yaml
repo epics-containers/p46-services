@@ -1,8 +1,6 @@
 blueapi:
   debug:
-    enabled: true
-  image:
-    repository: ghcr.io/diamondjoseph/blueapi
+    enabled: true  
   ingress:
     enabled: false
     hosts:
