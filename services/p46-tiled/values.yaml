@@ -100,7 +100,7 @@ glazed:
       bind_address = "0.0.0.0:3000"
 
       [tiled_client]
-      address = "http://p46-services:8000"
+      address = "http://p46-tiled:8000"
 
 oauth2:
   proxyVarsAsSecrets: false
