@@ -5,6 +5,8 @@ tiled:
   image:
     repository: ghcr.io/zohebshaikh/tiled
     tag: 0.4.16
+  service:
+    type: LoadBalancer
   config:
     database:
       uri: sqlite:////storage/foo.db
