@@ -51,13 +51,6 @@ spec:
             - --config-file
             - /etc/opa-config/config.yaml
             - --log-level=info
-            - --set
-            - "decision_logs.console=true"
-            - --set
-            - "decision_logs.reporting.min_delay_seconds=5"
-            - --set
-            - "decision_logs.reporting.max_delay_seconds=10"
-            - --log-format=text
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
