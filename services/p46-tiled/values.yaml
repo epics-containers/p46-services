@@ -5,8 +5,6 @@ tiled:
   image:
     repository: ghcr.io/zohebshaikh/tiled
     tag: 0.4.16
-  service:
-    type: LoadBalancer
   config:
     database:
       uri: sqlite:////storage/foo.db
@@ -92,6 +90,7 @@ tiled:
   - name: storage
     emptyDir:
       sizeLimit: 500Mi
+
 glazed:
   image:
     repository: ghcr.io/diamondjoseph/glazed
@@ -102,7 +101,6 @@ glazed:
 
       [tiled_client]
       address = "http://p46-services:8000"
-
 
 oauth2:
   proxyVarsAsSecrets: false
@@ -125,14 +123,13 @@ oauth2:
       cookie_expire="30m"
       email_domains = [ "*" ]
       skip_auth_routes=[
-      "GET=^/api/v1/",
-      "GET=^/api/v1/metadata"
+      "GET=^/graphiql"
       ]
       whitelist_domains=["authn.diamond.ac.uk"]
   ingress:
     enabled: false
     hosts:
-      - p46-tiled.diamond.ac.uk
+      - p46-blueapi.diamond.ac.uk
     annotations:
       nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
     path: /
@@ -145,7 +142,7 @@ oauth2:
         upstreams:
           - id: tiled
             path: /
-            uri: http://p46-tiled:8000
+            uri: http://p46-tiled-glazed:3000
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
