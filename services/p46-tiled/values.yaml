@@ -166,5 +166,3 @@ oauth2:
         - name: Identity
           values:
             - claim: access_token
-  service:
-    type: LoadBalancer
