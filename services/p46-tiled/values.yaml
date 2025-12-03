@@ -95,7 +95,7 @@ glazed:
   image:
     repository: ghcr.io/diamondjoseph/glazed
   customConfig:
-    enabled: false
+    enabled: true
     toml: |-
       bind_address = "0.0.0.0:3000"
 
