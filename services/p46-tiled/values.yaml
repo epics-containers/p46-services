@@ -122,9 +122,6 @@ oauth2:
       cookie_refresh="1m"
       cookie_expire="30m"
       email_domains = [ "*" ]
-      skip_auth_routes=[
-      "GET=^/graphiql"
-      ]
       whitelist_domains=["authn.diamond.ac.uk"]
   ingress:
     enabled: true
