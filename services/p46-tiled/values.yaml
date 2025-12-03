@@ -147,7 +147,7 @@ oauth2:
             path: /opa
             uri: http://p46-opa:8181
           - id: blueapi
-            path: /
+            path: /blueapi
             uri: http://p46-blueapi
       providers:
         - provider: oidc
