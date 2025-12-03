@@ -88,8 +88,8 @@ tiled:
       type: DirectoryOrCreate
     name: data
   - name: storage
-    emptyDir:
-      sizeLimit: 500Mi
+    persistentVolumeClaim:
+      claimName: tiled-storage-pvc
 
 glazed:
   image:
@@ -138,8 +138,17 @@ oauth2:
         proxyRawPath: true
         upstreams:
           - id: tiled
-            path: /
+            path: /tiled
+            uri: http://p46-tiled:8000
+          - id: tiled
+            path: /glazed
             uri: http://p46-tiled-glazed:3000
+          - id: tiled
+            path: /opa
+            uri: http://p46-opa:8181
+          - id: tiled
+            path: /
+            uri: http://p46-blueapi
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
@@ -156,7 +165,3 @@ oauth2:
           values:
             - claim: access_token
               prefix: "Bearer "
-      injectResponseHeaders:
-        - name: Identity
-          values:
-            - claim: access_token
