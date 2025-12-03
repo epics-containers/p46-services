@@ -140,13 +140,13 @@ oauth2:
           - id: tiled
             path: /tiled
             uri: http://p46-tiled:8000
-          - id: tiled
+          - id: glazed
             path: /glazed
             uri: http://p46-tiled-glazed:3000
-          - id: tiled
+          - id: opa
             path: /opa
             uri: http://p46-opa:8181
-          - id: tiled
+          - id: blueapi
             path: /
             uri: http://p46-blueapi
       providers:
