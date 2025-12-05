@@ -98,6 +98,7 @@ glazed:
     enabled: true
     toml: |-
       bind_address = "0.0.0.0:3000"
+      public_address = "https://p46-blueapi.diamond.ac.uk/glazed/graphql"
 
       [tiled_client]
       address = "http://p46-tiled:8000"
