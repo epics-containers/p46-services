@@ -66,8 +66,6 @@ blueapi:
           remote_url: https://github.com/DiamondLightSource/dodal.git
         - name: htss-rig-bluesky
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
-        - name: tiled
-          remote_url: https://github.com/zohebshaikh/tiled.git
     tiled:
       enabled: true
       url: "http://p46-tiled:8000/api/v1/"
