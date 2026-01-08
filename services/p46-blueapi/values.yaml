@@ -80,7 +80,7 @@ blueapi:
 
 glazed:
   image:
-    repository: ghcr.io/diamondlightsource/glazed:0.1.1
+    repository: ghcr.io/diamondlightsource/glazed
   customConfig:
     enabled: true
     toml: |-
