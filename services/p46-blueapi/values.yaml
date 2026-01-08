@@ -131,7 +131,7 @@ oauth2:
         upstreams:
           - id: glazed
             path: /glazed/(.*)
-            uri: http://p46-tiled-glazed:3000
+            uri: http://p46-blueapi-glazed:3000
             rewriteTarget: /$1
           - id: blueapi
             path: /
