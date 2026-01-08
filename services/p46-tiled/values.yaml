@@ -96,18 +96,6 @@ tiled:
     configMap:
       name: tiled-access-policy
 
-glazed:
-  image:
-    repository: ghcr.io/diamondjoseph/glazed
-  customConfig:
-    enabled: true
-    toml: |-
-      bind_address = "0.0.0.0:3000"
-      public_address = "https://p46-blueapi.diamond.ac.uk/glazed"
-
-      [tiled_client]
-      address = "http://p46-tiled:8000"
-
 oauth2:
   proxyVarsAsSecrets: false
   extraEnv:
@@ -132,7 +120,7 @@ oauth2:
   ingress:
     enabled: true
     hosts:
-      - p46-blueapi.diamond.ac.uk
+      - p46-tiled.diamond.ac.uk
     annotations:
       nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
     path: /
@@ -143,17 +131,13 @@ oauth2:
       upstreamConfig:
         proxyRawPath: true
         upstreams:
-          - id: glazed
-            path: /glazed/(.*)
-            uri: http://p46-tiled-glazed:3000
-            rewriteTarget: /$1
-          - id: blueapi
+          - id: tiled
             path: /
-            uri: http://p46-blueapi
+            uri: http://p46-tiled
       providers:
         - provider: oidc
           id: authn.diamond.ac.uk
-          clientID: p46-blueapi
+          clientID: p46-tiled
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true

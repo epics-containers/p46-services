@@ -78,6 +78,18 @@ blueapi:
       enabled: true
       # existingClaimName: foo
 
+glazed:
+  image:
+    repository: ghcr.io/diamondlightsource/glazed:0.1.1
+  customConfig:
+    enabled: true
+    toml: |-
+      bind_address = "0.0.0.0:3000"
+      public_address = "https://p46-blueapi.diamond.ac.uk/glazed"
+
+      [tiled_client]
+      address = "http://p46-tiled:8000"
+
 oauth2:
   proxyVarsAsSecrets: false
   extraEnv:
@@ -104,7 +116,7 @@ oauth2:
       ]
       whitelist_domains=["authn.diamond.ac.uk"]
   ingress:
-    enabled: false
+    enabled: true
     hosts:
       - p46-blueapi.diamond.ac.uk
     annotations:
@@ -117,6 +129,10 @@ oauth2:
       upstreamConfig:
         proxyRawPath: true
         upstreams:
+          - id: glazed
+            path: /glazed/(.*)
+            uri: http://p46-tiled-glazed:3000
+            rewriteTarget: /$1
           - id: blueapi
             path: /
             uri: http://p46-blueapi
@@ -129,7 +145,7 @@ oauth2:
             insecureAllowUnverifiedEmail: true
             emailClaim: sub
             audienceClaims: ["aud"]
-            extraAudiences: ["blueapi"]
+            # extraAudiences: ["blueapi"]
             issuerURL: https://authn.diamond.ac.uk/realms/master
       injectRequestHeaders:
         - name: Authorization
