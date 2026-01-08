@@ -118,7 +118,7 @@ oauth2:
       email_domains = [ "*" ]
       whitelist_domains=["authn.diamond.ac.uk"]
   ingress:
-    enabled: true
+    enabled: false
     hosts:
       - p46-tiled.diamond.ac.uk
     annotations:
