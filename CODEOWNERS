@@ -2,4 +2,4 @@
 * @gilesknap
 
 # DAQ Services
-/services/p46-* @DiamondJoseph
+/services/p46-* @epics-containers/developers-daq-core
