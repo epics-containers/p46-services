@@ -96,6 +96,18 @@ tiled:
     configMap:
       name: tiled-access-policy
 
+glazed:
+  image:
+    repository: ghcr.io/diamondlightsource/glazed
+  customConfig:
+    enabled: true
+    toml: |-
+      bind_address = "0.0.0.0:3000"
+      public_address = "https://p46-blueapi.diamond.ac.uk/glazed"
+
+      [tiled_client]
+      address = "http://p46-tiled:8000"
+
 oauth2:
   proxyVarsAsSecrets: false
   extraEnv:
@@ -131,6 +143,10 @@ oauth2:
       upstreamConfig:
         proxyRawPath: true
         upstreams:
+          - id: glazed
+            path: /glazed/(.*)
+            uri: http://p46-tiled-glazed:3000
+            rewriteTarget: /$1
           - id: tiled
             path: /
             uri: http://p46-tiled
