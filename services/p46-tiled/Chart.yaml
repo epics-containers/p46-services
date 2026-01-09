@@ -18,6 +18,3 @@ dependencies:
     repository: https://oauth2-proxy.github.io/manifests
     version: 8.5.0
 
-  - name: glazed
-    version: "0.1.1"
-    repository: "oci://ghcr.io/diamondlightsource/charts"

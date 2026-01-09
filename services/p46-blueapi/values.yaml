@@ -78,6 +78,19 @@ blueapi:
       enabled: true
       # existingClaimName: foo
 
+glazed:
+  image:
+    repository: ghcr.io/zohebshaikh/glazed
+  customConfig:
+    enabled: true
+    toml: |-
+      bind_address = "0.0.0.0:3000"
+      public_address = "https://p46-blueapi.diamond.ac.uk/glazed"
+
+      [tiled_client]
+      address = "http://p46-tiled:8000"
+
+
 oauth2:
   proxyVarsAsSecrets: false
   extraEnv:
@@ -117,6 +130,10 @@ oauth2:
       upstreamConfig:
         proxyRawPath: true
         upstreams:
+          - id: glazed
+            path: /glazed/(.*)
+            uri: http://p46-blueapi-glazed:3000
+            rewriteTarget: /$1
           - id: blueapi
             path: /
             uri: http://p46-blueapi
