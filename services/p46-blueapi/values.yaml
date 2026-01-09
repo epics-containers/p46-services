@@ -95,7 +95,7 @@ oauth2:
     configFile: |-
       skip_provider_button = true
       skip_jwt_bearer_tokens = true
-      insecureSkipNonce=false
+      insecure_skip_nonce = false
       cookie_refresh="1m"
       cookie_expire="30m"
       email_domains = [ "*" ]
