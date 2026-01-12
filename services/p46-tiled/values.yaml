@@ -97,7 +97,7 @@ tiled:
 
 glazed:
   image:
-    repository: ghcr.io/diamondlightsource/glazed
+    repository: ghcr.io/zohebshaikh/glazed
   customConfig:
     enabled: true
     toml: |-
