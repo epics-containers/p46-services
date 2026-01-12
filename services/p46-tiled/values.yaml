@@ -5,6 +5,9 @@ tiled:
   image:
     tag: 0.2.3
   config:
+    database:
+      uri: sqlite:////storage/auth.db
+      init_if_not_exists: true
     authentication:
       allow_anonymous_access: true
       secret_keys:
