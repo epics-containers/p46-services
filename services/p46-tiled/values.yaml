@@ -3,12 +3,8 @@ tiled:
   - name: PYTHONPATH
     value: /deploy/
   image:
-    repository: ghcr.io/bluesky/tiled
     tag: 0.2.3
   config:
-    database:
-      uri: sqlite:////storage/auth-new.db
-      init_if_not_exists: true
     authentication:
       allow_anonymous_access: true
       secret_keys:
@@ -33,7 +29,7 @@ tiled:
         tree: catalog
         args:
           uri: "sqlite:////storage/catalog.db"
-          writable_storage: "sqlite:////storage/catalog.db"
+          writable_storage: "sqlite:////storage/data.db"
           readable_storage:
           - /exports/mybeamline
           # This creates the database if it does not exist. This is convenient, but in
@@ -45,6 +41,8 @@ tiled:
           #
           # separately.
           init_if_not_exists: true
+  service:
+    port: 80
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   ingress:
@@ -106,7 +104,7 @@ glazed:
       public_address = "https://p46-blueapi.diamond.ac.uk/glazed"
 
       [tiled_client]
-      address = "http://p46-tiled:8000"
+      address = "http://p46-tiled:80"
 
 oauth2:
   proxyVarsAsSecrets: false
