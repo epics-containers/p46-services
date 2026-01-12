@@ -44,8 +44,6 @@ tiled:
           #
           # separately.
           init_if_not_exists: true
-  service:
-    port: 80
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   ingress:
@@ -107,7 +105,7 @@ glazed:
       public_address = "https://p46-blueapi.diamond.ac.uk/glazed"
 
       [tiled_client]
-      address = "http://p46-tiled:80"
+      address = "http://p46-tiled:8000"
 
 oauth2:
   proxyVarsAsSecrets: false
@@ -150,7 +148,7 @@ oauth2:
             rewriteTarget: /$1
           - id: tiled
             path: /
-            uri: http://p46-tiled
+            uri: http://p46-tiled:8000
       providers:
         - provider: oidc
           id: identity-test.diamond.ac.uk
