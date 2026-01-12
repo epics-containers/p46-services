@@ -18,9 +18,9 @@ tiled:
         authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
         args:
           audience: account
-          client_id: p46-blueapi
+          client_id: p46-tiled-test
           device_flow_client_id: blueapi-cli
-          well_known_uri: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
+          well_known_uri: "https://identity-test.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
           confirmation_message: "You have logged in with authn.diamond.ac.uk as {id}."
     access_control:
       access_policy: "access_policy.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
@@ -114,12 +114,12 @@ oauth2:
     - name: OAUTH2_PROXY_CLIENT_SECRET
       valueFrom:
         secretKeyRef:
-          name: blueapi-secret
+          name: tiled-secret
           key: client-secret
     - name: OAUTH2_PROXY_COOKIE_SECRET
       valueFrom:
         secretKeyRef:
-          name: blueapi-secret
+          name: tiled-secret
           key: cookie-secret
   config:
     configFile: |-
@@ -128,7 +128,7 @@ oauth2:
       cookie_refresh="1m"
       cookie_expire="30m"
       email_domains = [ "*" ]
-      whitelist_domains=["authn.diamond.ac.uk"]
+      whitelist_domains=["authn.diamond.ac.uk","identity-test.diamond.ac.uk"]
   ingress:
     enabled: true
     hosts:
@@ -152,15 +152,15 @@ oauth2:
             uri: http://p46-tiled
       providers:
         - provider: oidc
-          id: authn.diamond.ac.uk
-          clientID: p46-tiled
+          id: identity-test.diamond.ac.uk
+          clientID: p46-tiled-test
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
             emailClaim: sub
             audienceClaims: ["aud"]
-            # extraAudiences: ["blueapi"]
-            issuerURL: https://authn.diamond.ac.uk/realms/master
+            extraAudiences: ["tiled"]
+            issuerURL: https://identity-test.diamond.ac.uk/realms/dls
       injectRequestHeaders:
         - name: Authorization
           values:
