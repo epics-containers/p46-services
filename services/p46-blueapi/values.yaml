@@ -123,7 +123,7 @@ oauth2:
             uri: http://p46-blueapi
       providers:
         - provider: oidc
-          id: authn.diamond.ac.uk
+          id: identity-test.diamond.ac.uk
           clientID: p46-blueapi
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
