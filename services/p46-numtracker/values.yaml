@@ -19,3 +19,21 @@ numtracker:
         paths:
           - path: /
             pathType: Prefix
+
+  podSecurityContext:
+    # Run as k8s-numtracker user and group so it can access /dls_sw
+    runAsUser: 36120
+    runAsGroup: 36120
+  securityContext:
+    privileged: false
+  extraVolumes:
+    # name can't include underscores
+    - name: dls-sw
+      hostPath:
+        path: /dls_sw/htss/p46
+        type: Directory
+  extraVolumeMounts:
+    - mountPath: /trackers/p38
+      name: dls-sw
+      mountPropagation: HostToContainer
+      subPath: p38/software/gda_var
