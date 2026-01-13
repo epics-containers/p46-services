@@ -18,9 +18,9 @@ tiled:
         args:
           audience: account
           client_id: p46-tiled-test
-          device_flow_client_id: blueapi-cli
+          device_flow_client_id: tiled-cli
           well_known_uri: "https://identity-test.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
-          confirmation_message: "You have logged in with authn.diamond.ac.uk as {id}."
+          confirmation_message: "You have logged in with identity-test.diamond.ac.uk as {id}."
     access_control:
       access_policy: "access_policy.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
       args:
@@ -127,7 +127,7 @@ oauth2:
       cookie_refresh="1m"
       cookie_expire="30m"
       email_domains = [ "*" ]
-      whitelist_domains=["authn.diamond.ac.uk","identity-test.diamond.ac.uk"]
+      whitelist_domains=["identity-test.diamond.ac.uk"]
   ingress:
     enabled: true
     hosts:
