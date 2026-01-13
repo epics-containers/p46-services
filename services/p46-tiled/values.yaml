@@ -24,7 +24,7 @@ tiled:
     access_control:
       access_policy: "access_policy.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
       args:
-        authorization_provider: http://p46-opa:8181/v1/data/diamond/policy/
+        authorization_provider: http://pxx-opa.diamond.ac/v1/data/diamond/policy/
         token_audience: account
         empty_access_blob_public: true
     trees:
