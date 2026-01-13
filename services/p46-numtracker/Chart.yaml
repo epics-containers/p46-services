@@ -1,0 +1,14 @@
+apiVersion: v2
+name: numtracker
+description: Central numtracker instance for numtracker.diamond.ac.uk
+
+version: 0.1.6
+
+appVersion: "0.1.6"
+
+type: application
+
+dependencies:
+  - name: numtracker
+    version: "0.1.6"
+    repository: "oci://ghcr.io/diamondlightsource/charts"
