@@ -30,7 +30,7 @@ blueapi:
 
   worker:
     numtracker:
-      url: http://p46-numtracker/graphql
+      url: http://p46-numtracker:8080/graphql
     env:
       metadata:
         instrument: p46
