@@ -30,7 +30,7 @@ numtracker:
     # name can't include underscores
     - name: dls-sw
       hostPath:
-        path: /dls_sw
+        path: /dls_sw/p46
         type: Directory
   extraVolumeMounts:
     - mountPath: /trackers/p38
