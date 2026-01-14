@@ -118,6 +118,10 @@ oauth2:
       upstreamConfig:
         proxyRawPath: true
         upstreams:
+          - id: glazed
+            path: /glazed/(.*)
+            uri: http://p46-numtracker:8080
+            rewriteTarget: /$1
           - id: blueapi
             path: /
             uri: http://p46-blueapi
