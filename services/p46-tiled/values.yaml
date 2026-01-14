@@ -159,7 +159,7 @@ oauth2:
             insecureSkipNonce: true
             emailClaim: sub
             audienceClaims: ["aud"]
-            extraAudiences: ["tiled"]
+            extraAudiences: ["account"]
             issuerURL: https://identity-test.diamond.ac.uk/realms/dls
       injectRequestHeaders:
         - name: Authorization
