@@ -4,7 +4,7 @@ numtracker:
   numtracker:
     auth:
       enabled: true
-      host: https://authz.diamond.ac.uk
+      host: https://pxx-opa.diamond.ac.uk
       admin: v1/data/diamond/policy/admin/configure_beamline
       access: v1/data/diamond/policy/session/write_to_beamline_visit
     storage:
@@ -15,9 +15,9 @@ numtracker:
   service:
     port: 8080
   ingress:
-    enabled: enabled
+    enabled: false
     hosts:
-      - host: pxx-opa.diamond.ac.uk
+      - host: pxx-numtracker.diamond.ac.uk
         paths:
           - path: /
             pathType: Prefix
