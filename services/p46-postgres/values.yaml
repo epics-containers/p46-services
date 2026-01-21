@@ -9,7 +9,7 @@ postgres:
   ## Database and user (user is optional, but recommended, as 'postgres' would be the only user otherwise)
   userDatabase:
     ## Optional existing secret with database name, user and password
-    existingSecret: sh-test-db
+    existingSecret: postgres-secret
     name: 
       ## Name of the user database
       secretKey: POSTGRES_DB
@@ -23,17 +23,13 @@ postgres:
   ## Database configuration
   settings:
     ## Optional existing secret for the Postgrest superuser
-    existingSecret: sh-test-db
+    existingSecret: postgres-secret
     superuserPassword:
       secretKey: ADMIN_PASS
-    ## Postgres database authentication method
-    ## For example: "md5"
-    authMethod: scram-sha-256
-    ## Optional init database arguments
-    initDbArgs: "--auth-local=scram-sha-256 --auth=scram-sha-256"
+
 
   storage:
-    volumeName: test-db-postgres 
+    volumeName: db-postgres 
     keepPvc: true
     className: db-nvme-storage
     requestedSize: 8Gi
