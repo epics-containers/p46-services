@@ -1,23 +1,15 @@
 tiled:
   extraEnvVars:
-  - name: USER_NAME
-    valueFrom:
-      secretKeyRef:
-        name: postgres-secret
-        key: USER_NAME
-  
-  - name: PASSWORD
-    valueFrom:
-      secretKeyRef:
-        name: postgres-secret
-        key: USER_PASS
-  
   - name: PYTHONPATH
     value: /deploy/
   image:
     tag: 0.2.3
   config:
+    database:
+      uri: sqlite:////storage/auth.db
+      init_if_not_exists: true
     authentication:
+      allow_anonymous_access: true
       secret_keys:
       - SECRET
       providers:
@@ -39,7 +31,10 @@ tiled:
       - path: /
         tree: catalog
         args:
-          uri: "postgresql+asyncpg://${USER_NAME}:${PASSWORD}@tiled-postgresql:5432/tiled"
+          uri: "sqlite:////storage/catalog.db"
+          writable_storage: "sqlite:////storage/data.db"
+          readable_storage:
+          - /exports/mybeamline
           # This creates the database if it does not exist. This is convenient, but in
           # a horizontally-scaled deployment, this can be a race condition and multiple
           # containers may simultaneously attempt to create the database.
