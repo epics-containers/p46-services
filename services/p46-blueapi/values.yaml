@@ -1,4 +1,11 @@
 blueapi:
+  image:
+    # -- To use a container image that extends the blueapi one, set it here
+    repository: ghcr.io/zohebshaikh/blueapi
+    # This sets the pull policy for images.
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "0.0.4"
   debug:
     enabled: true  
   ingress:
