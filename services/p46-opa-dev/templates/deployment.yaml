@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "p46-opa.fullname" . }}
+  name: {{ include "p46-opa-dev.fullname" . }}
   labels:
-    {{- include "p46-opa.labels" . | nindent 4 }}
+    {{- include "p46-opa-dev.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "p46-opa.selectorLabels" . | nindent 6 }}
+      {{- include "p46-opa-dev.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       annotations:
@@ -19,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "p46-opa.labels" . | nindent 8 }}
+        {{- include "p46-opa-dev.labels" . | nindent 8 }}
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -28,7 +28,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "p46-opa.serviceAccountName" . }}
+      serviceAccountName: {{ include "p46-opa-dev.serviceAccountName" . }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}

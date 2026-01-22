@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "p46-opa.fullname" . }}
+  name: {{ include "p46-opa-dev.fullname" . }}
   labels:
-    {{- include "p46-opa.labels" . | nindent 4 }}
+    {{- include "p46-opa-dev.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "p46-opa.fullname" . }}
+    name: {{ include "p46-opa-dev.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:

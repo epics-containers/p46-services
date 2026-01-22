@@ -1,4 +1,4 @@
-# Default values for p46-opa.
+# Default values for p46-opa-dev.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 extraEnvVars:
@@ -75,7 +75,7 @@ ingress:
     - host: pxx-opa.diamond.ac.uk
       paths:
         - path: /identity-dev
-          pathType: Prefix
+          pathType: Exact
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:

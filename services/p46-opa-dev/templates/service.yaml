@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "p46-opa.fullname" . }}
+  name: {{ include "p46-opa-dev.fullname" . }}
   labels:
-    {{- include "p46-opa.labels" . | nindent 4 }}
+    {{- include "p46-opa-dev.labels" . | nindent 4 }}
 spec:
   type: {{ .Values.service.type }}
   ports:
@@ -12,4 +12,4 @@ spec:
       protocol: TCP
       name: http
   selector:
-    {{- include "p46-opa.selectorLabels" . | nindent 4 }}
+    {{- include "p46-opa-dev.selectorLabels" . | nindent 4 }}
