@@ -72,9 +72,9 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: pxx-opa-dev.diamond.ac.uk
+    - host: pxx-opa.diamond.ac.uk
       paths:
-        - path: /
+        - path: /identity-dev
           pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
