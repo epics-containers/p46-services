@@ -1,10 +1,4 @@
 blueapi:
-  extraEnv:
-    - name: OAUTH2_PROXY_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: blueapi-secret
-          key: client-secret
   image:
     # -- To use a container image that extends the blueapi one, set it here
     repository: ghcr.io/zohebshaikh/blueapi
@@ -34,6 +28,11 @@ blueapi:
       value: "NO"
     - name: EPICS_CA_AUTO_ADDR_LIST
       value: "NO"
+    - name: OAUTH2_PROXY_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: client-secret
 
   tracing:
     otlp:
