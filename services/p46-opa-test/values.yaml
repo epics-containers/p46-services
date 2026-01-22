@@ -72,7 +72,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: pxx-opa.diamond.ac.uk
+    - host: pxx-opa-test.diamond.ac.uk
       paths:
         - path: /
           pathType: Prefix
