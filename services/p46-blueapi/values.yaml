@@ -1,4 +1,10 @@
 blueapi:
+  extraEnv:
+    - name: OAUTH2_PROXY_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: client-secret
   image:
     # -- To use a container image that extends the blueapi one, set it here
     repository: ghcr.io/zohebshaikh/blueapi
@@ -79,6 +85,8 @@ blueapi:
     tiled:
       enabled: true
       url: "http://p46-tiled:8000/api/v1/"
+      token_exchange_client_id: "p46-blueapi"
+      token_exchange_secret: ${OAUTH2_PROXY_CLIENT_SECRET}
   initContainer:
     enabled: true
     persistentVolume:
