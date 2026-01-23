@@ -74,7 +74,7 @@ ingress:
   hosts:
     - host: pxx-opa.diamond.ac.uk
       paths:
-        - path: /identity
+        - path: /
           pathType: Prefix
   tls: []
   #  - secretName: chart-example-tls
