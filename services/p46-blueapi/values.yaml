@@ -60,7 +60,6 @@ blueapi:
       client_audience: "account"
       logout_redirect_endpoint: "oauth2/sign_out"
     scratch:
-      root: /dls_sw/htss/p46/scratch
       repositories:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
