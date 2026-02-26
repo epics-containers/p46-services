@@ -42,7 +42,7 @@ tiled:
       - path: /
         tree: catalog
         args:
-          uri: "postgresql+asyncpg://${USERDB_USER}:${POSTGRESQL_PASSWORD}@p46-tiled-postgresql:5432/tiled-db"
+          uri: "postgresql+asyncpg://${USER_NAME}:${POSTGRESQL_PASSWORD}@p46-tiled-postgresql:5432/tiled-db"
           # writable_storage: "sqlite:////storage/data.db"
           # readable_storage:
           # - /exports/mybeamline
