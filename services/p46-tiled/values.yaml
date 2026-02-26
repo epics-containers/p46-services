@@ -230,4 +230,4 @@ postgres:
 
 ## Redis
 
-redis:
+# redis:
