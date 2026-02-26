@@ -177,3 +177,57 @@ oauth2:
           values:
             - claim: access_token
               prefix: "Bearer "
+
+
+## Postgres
+postgres:
+    replicaCount: 1
+
+    ## Use Kubernetes Deployment instead of StatefulSet
+    useDeployment: true
+
+    ## Database and user (user is optional, but recommended, as 'postgres' would be the only user otherwise)
+    userDatabase:
+      ## Optional existing secret with database name, user and password
+      existingSecret: postgres-secret
+      name: 
+        ## Name of the user database
+        value: tiled-db
+      password:
+        ## Password of the database user
+        secretKey: USER_PASS
+      user:
+        ## Database user with full access rights
+        value: tiled
+
+    ## Database configuration
+    settings:
+      ## Optional existing secret for the Postgres superuser
+      existingSecret: postgres-secret
+      superuserPassword:
+        secretKey: ADMIN_PASS
+      ## Postgres database authentication method
+      ## For example: "md5"
+      authMethod: scram-sha-256
+      ## Optional init database arguments
+      initDbArgs: "--auth-local=scram-sha-256 --auth=scram-sha-256"
+
+    storage:
+      volumeName: tiled-db-postgres 
+      keepPvc: true
+      className: db-nvme-storage
+      requestedSize: 8Gi
+      accessModes:
+        - ReadWriteOnce
+
+    resources:
+      limits:
+        cpu: 2
+        memory: 2G
+      requests:
+        cpu: "0.5"
+        memory: 1G
+
+## Redis
+
+redis:

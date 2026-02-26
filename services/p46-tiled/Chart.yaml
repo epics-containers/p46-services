@@ -23,3 +23,10 @@ dependencies:
     repository: https://oauth2-proxy.github.io/manifests
     version: 8.5.0
 
+  - name: postgres
+    version: 1.6.1
+    repository: https://groundhog2k.github.io/helm-charts/
+
+  - name: redis
+    version: 2.3.0
+    repository: https://groundhog2k.github.io/helm-charts/
