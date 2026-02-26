@@ -42,10 +42,11 @@ tiled:
       - path: /
         tree: catalog
         args:
-          uri: "postgresql+asyncpg://${USER_NAME}:${POSTGRESQL_PASSWORD}@p46-tiled-postgresql:5432/tiled-db"
-          # writable_storage: "sqlite:////storage/data.db"
-          # readable_storage:
-          # - /exports/mybeamline
+          # uri: "postgresql+asyncpg://${USER_NAME}:${POSTGRESQL_PASSWORD}@p46-tiled-postgresql:5432/tiled-db"
+          uri: "sqlite:////storage/catalog.db"
+          writable_storage: "sqlite:////storage/data.db"
+          readable_storage:
+          - /exports/mybeamline
          # This creates the database if it does not exist. This is convenient, but in
           # a horizontally-scaled deployment, this can be a race condition and multiple
           # containers may simultaneously attempt to create the database.
