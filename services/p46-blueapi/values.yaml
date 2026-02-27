@@ -1,11 +1,11 @@
 blueapi:
-  image:
-    # -- To use a container image that extends the blueapi one, set it here
-    repository: ghcr.io/zohebshaikh/blueapi
-    # This sets the pull policy for images.
-    pullPolicy: IfNotPresent
-    # Overrides the image tag whose default is the chart appVersion.
-    tag: "0.0.4"
+  # image:
+  #   # -- To use a container image that extends the blueapi one, set it here
+  #   repository: ghcr.io/zohebshaikh/blueapi
+  #   # This sets the pull policy for images.
+  #   pullPolicy: IfNotPresent
+  #   # Overrides the image tag whose default is the chart appVersion.
+  #   tag: "0.0.4"
   debug:
     enabled: true  
   ingress:
@@ -33,6 +33,11 @@ blueapi:
         secretKeyRef:
           name: blueapi-secret
           key: client-secret
+    - name: TILED_WRITER_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: tiled-writer-secret
 
   tracing:
     otlp:
@@ -84,8 +89,9 @@ blueapi:
     tiled:
       enabled: true
       url: "http://p46-tiled:8000/api/v1/"
-      token_exchange_client_id: "p46-blueapi"
-      token_exchange_secret: ${OAUTH2_PROXY_CLIENT_SECRET}
+      authentication:
+        client_id: "p46TiledWriter"
+        client_secret: ${TILED_WRITER_SECRET}
   initContainer:
     enabled: true
     persistentVolume:
