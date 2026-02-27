@@ -164,7 +164,7 @@ oauth2:
       providers:
         - provider: oidc
           id: identity-test.diamond.ac.uk
-          clientID: p46-tiled-test
+          clientID: p46-tiled
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
