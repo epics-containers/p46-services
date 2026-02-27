@@ -52,7 +52,7 @@ blueapi:
       metadata:
         instrument: p46
       sources:
-        - kind: dodal
+        - kind: deviceManager
           module: dodal.beamlines.training_rig
         - kind: planFunctions
           module: htss_rig_bluesky.plans
