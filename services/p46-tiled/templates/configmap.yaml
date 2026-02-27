@@ -89,7 +89,7 @@ data:
                 ResultHolder[int],
             )
             if decision and decision.result is not None:
-                return (True, {"tags": [decision.result]})
+                return (True, {"tags": [str(decision.result)]})
             raise ValueError("Permission denied not able to add the node")
 
         async def modify_node(
@@ -162,9 +162,11 @@ data:
             if tags is not None:
                 if tags.result == ["*"]:
                     return ALL_ACCESS
-                return [AccessBlobFilter(tags=tags.result, user_id=None)]  # type: ignore
+                temp = [str(i) for i in tags.result]
+                return [AccessBlobFilter(tags=temp, user_id=None)]  # type: ignore
             else:
                 return NO_ACCESS  # type: ignore
+
 
   __init__.py: |-
 
