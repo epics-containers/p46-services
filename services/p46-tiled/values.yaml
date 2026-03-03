@@ -43,7 +43,7 @@ tiled:
         tree: catalog
         args:
           uri: "postgresql+asyncpg://postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/tiled-db"
-          writable_storage: "postgresql+asyncpg://postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/data"
+          writable_storage: "postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/data"
           # uri: "sqlite:////storage/catalog.db"
           # writable_storage: "sqlite:////storage/data.db"
           # readable_storage:
