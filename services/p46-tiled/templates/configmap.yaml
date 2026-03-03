@@ -61,7 +61,7 @@ data:
             provider: str | None = None,
         ):
             self._token_audience = token_audience
-            self._type_adapter = TypeAdapter(DiamondAccessBlob)
+            self._type_adapter = TypeAdapter(DiamondAccessBlob|int)
 
             super().__init__(
                 authorization_provider=authorization_provider,
@@ -86,10 +86,10 @@ data:
             decision = await self._get_external_decision(
                 self._create_node,
                 self.build_input(principal, authn_access_tags, authn_scopes, access_blob),
-                ResultHolder[int],
+                ResultHolder[str],
             )
             if decision and decision.result is not None:
-                return (True, {"tags": [str(decision.result)]})
+                return (True, {"tags": [decision.result]})
             raise ValueError("Permission denied not able to add the node")
 
         async def modify_node(
@@ -137,11 +137,11 @@ data:
                 and "tags" in access_blob
                 and len(access_blob["tags"]) > 0
             ):
-                if isinstance(tags := access_blob["tags"][0], str):
-                    blob = self._type_adapter.validate_json(tags)
+                blob = self._type_adapter.validate_json(access_blob["tags"][0])
+                if isinstance(blob,DiamondAccessBlob):
                     _input.update(blob.model_dump())
-                elif isinstance(tags, int):
-                    _input["session"] = str(tags)
+                if isinstance(blob,int):
+                    _input["session"] = str(blob)
 
             return json.dumps({"input": _input})
 
@@ -157,13 +157,12 @@ data:
             tags = await self._get_external_decision(
                 self._user_tags,
                 self.build_input(principal, authn_access_tags, authn_scopes),
-                ResultHolder[list[int | str]],
+                ResultHolder[list[str]],
             )
             if tags is not None:
                 if tags.result == ["*"]:
                     return ALL_ACCESS
-                temp = [str(i) for i in tags.result]
-                return [AccessBlobFilter(tags=temp, user_id=None)]  # type: ignore
+                return [AccessBlobFilter(tags=tags.result, user_id=None)]  # type: ignore
             else:
                 return NO_ACCESS  # type: ignore
 
