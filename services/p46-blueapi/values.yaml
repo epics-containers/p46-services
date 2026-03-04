@@ -1,11 +1,4 @@
 blueapi:
-  # image:
-  #   # -- To use a container image that extends the blueapi one, set it here
-  #   repository: ghcr.io/zohebshaikh/blueapi
-  #   # This sets the pull policy for images.
-  #   pullPolicy: IfNotPresent
-  #   # Overrides the image tag whose default is the chart appVersion.
-  #   tag: "0.0.4"
   debug:
     enabled: true  
   ingress:
@@ -28,11 +21,6 @@ blueapi:
       value: "NO"
     - name: EPICS_CA_AUTO_ADDR_LIST
       value: "NO"
-    - name: OAUTH2_PROXY_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: blueapi-secret
-          key: client-secret
     - name: TILED_WRITER_SECRET
       valueFrom:
         secretKeyRef:
@@ -47,7 +35,7 @@ blueapi:
 
   worker:
     numtracker:
-      url: http://p46-numtracker:8080/graphql
+      url: https://numtracker-staging.diamond.ac.uk/graphql
     env:
       metadata:
         instrument: p46
@@ -96,7 +84,6 @@ blueapi:
       enabled: true
       # existingClaimName: foo
 
-
 oauth2:
   proxyVarsAsSecrets: false
   extraEnv:
@@ -120,8 +107,6 @@ oauth2:
       skip_auth_routes=[
       "GET=^/config/oidc",
       "GET=^/healthz",
-      "GET=^/numtracker/^",
-      "POST=^/numtracker/^"
       ]
       whitelist_domains=["identity.diamond.ac.uk"]
   ingress:
@@ -138,10 +123,6 @@ oauth2:
       upstreamConfig:
         proxyRawPath: true
         upstreams:
-          - id: numtracker
-            path: /numtracker/(.*)
-            uri: http://p46-numtracker:8080
-            rewriteTarget: /$1
           - id: blueapi
             path: /
             uri: http://p46-blueapi
