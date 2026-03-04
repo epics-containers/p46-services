@@ -72,8 +72,8 @@ blueapi:
         enabled: true
 
     oidc:
-      well_known_url: "https://identity-test.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
-      client_id: "p46-blueapi-cli"
+      well_known_url: "https://identity.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
+      client_id: "blueapiCli"
       client_audience: "account"
       logout_redirect_endpoint: "oauth2/sign_out"
     scratch:
@@ -83,8 +83,6 @@ blueapi:
           remote_url: https://github.com/DiamondLightSource/dodal.git
         - name: htss-rig-bluesky
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git  
-        # - name: tiled
-        #   remote_url: https://github.com/zohebshaikh/tiled.git
 
     tiled:
       enabled: true
@@ -125,7 +123,7 @@ oauth2:
       "GET=^/numtracker/^",
       "POST=^/numtracker/^"
       ]
-      whitelist_domains=["identity-test.diamond.ac.uk"]
+      whitelist_domains=["identity.diamond.ac.uk"]
   ingress:
     enabled: true
     hosts:
@@ -149,7 +147,7 @@ oauth2:
             uri: http://p46-blueapi
       providers:
         - provider: oidc
-          id: identity-test.diamond.ac.uk
+          id: identity.diamond.ac.uk
           clientID: p46-blueapi
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
@@ -158,7 +156,7 @@ oauth2:
             emailClaim: sub
             audienceClaims: ["aud"]
             extraAudiences: ["account"]
-            issuerURL: https://identity-test.diamond.ac.uk/realms/dls
+            issuerURL: https://identity.diamond.ac.uk/realms/dls
       injectRequestHeaders:
         - name: Authorization
           values:
