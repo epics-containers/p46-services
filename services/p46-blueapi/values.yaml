@@ -147,4 +147,5 @@ oauth2:
       injectResponseHeaders:
         - name: Identity
           values:
-            - claimSource: access_token
+            - claimSource: 
+                claim: access_token
