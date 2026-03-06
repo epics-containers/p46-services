@@ -21,8 +21,8 @@ rabbitmq:
   serviceAccount:
     create: false
   service:
-    type: LoadBalancer
-    loadBalancerIP: 172.23.168.212
+    # type: LoadBalancer
+    # loadBalancerIP: 172.23.168.212
     extraPorts:
       - name: stomp
         port: 61613
@@ -37,3 +37,12 @@ rabbitmq:
       cpu: 750m
       memory: 1536Mi
       ephemeral-storage: 2Gi
+
+  ingress:
+    enabled: true
+
+    hosts:
+      - host: pxx-numtracker.diamond.ac.uk
+        paths:
+          - path: /
+            pathType: Prefix
