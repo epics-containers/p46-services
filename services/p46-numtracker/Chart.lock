@@ -1,0 +1,6 @@
+dependencies:
+- name: numtracker
+  repository: file:///home/zoheb/workspace/fork/numtracker/helm/numtracker
+  version: 1.0.2
+digest: sha256:8564242a67344b2b5988dcaaddb96e96ad49a40e68961a9fbb5897b9b3b2752f
+generated: "2026-03-06T10:32:48.718335136Z"
