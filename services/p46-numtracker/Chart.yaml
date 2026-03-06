@@ -11,4 +11,4 @@ type: application
 dependencies:
   - name: numtracker
     version: "1.0.2"
-    repository: "file:///home/zoheb/workspace/fork/numtracker/helm/numtracker"
+    repository: "oci://ghcr.io/diamondlightsource/charts"
