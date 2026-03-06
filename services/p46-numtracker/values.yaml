@@ -15,7 +15,7 @@ numtracker:
   service:
     port: 8080
   ingress:
-    enabled: true
+    enabled: false
     hosts:
       - host: pxx-numtracker.diamond.ac.uk
         paths:
