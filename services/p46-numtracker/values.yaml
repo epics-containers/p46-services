@@ -1,6 +1,7 @@
 numtracker:
   image:
-    tag: "1.0.2"
+    repository: ghcr.io/zohebshaikh/numtracker
+    tag: "0.0.9"
   numtracker:
     auth:
       enabled: true
@@ -11,6 +12,10 @@ numtracker:
       # Far bigger than required but the minimum PV size
       size: 20Mi
     rootTrackerDirectory: /trackers
+    graylog:
+      enabled: true
+      level: INFO
+      host: tcp://graylog-log-target.diamond.ac.uk:12231
 
   service:
     port: 8080
