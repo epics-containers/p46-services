@@ -55,10 +55,14 @@ blueapi:
         enabled: true
 
     oidc:
-      well_known_url: "https://authn.diamond.ac.uk/realms/master/.well-known/openid-configuration"
-      client_id: "p46-blueapi"
-      client_audience: "account"
+      well_known_url: "https://identity.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
+      client_id: "blueapiCli"
       logout_redirect_endpoint: "oauth2/sign_out"
+    
+    
+    numtracker:
+      url: https://numtracker-staging.diamond.ac.uk/graphql
+    
     scratch:
       repositories:
         - name: dodal
@@ -95,7 +99,7 @@ oauth2:
       "GET=^/config/oidc",
       "GET=^/healthz"
       ]
-      whitelist_domains=["authn.diamond.ac.uk"]
+      whitelist_domains=["identity.diamond.ac.uk"]
   ingress:
     enabled: true
     hosts:
@@ -115,15 +119,16 @@ oauth2:
             uri: http://p46-blueapi
       providers:
         - provider: oidc
-          id: authn.diamond.ac.uk
-          clientID: p46-blueapi
+          id: identity.diamond.ac.uk
+          clientID: p46Blueapi
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
+            insecureSkipNonce: true
             emailClaim: sub
             audienceClaims: ["aud"]
-            extraAudiences: ["blueapi"]
-            issuerURL: https://authn.diamond.ac.uk/realms/master
+            extraAudiences: ["account"]
+            issuerURL: https://identity.diamond.ac.uk/realms/dls
       injectRequestHeaders:
         - name: Authorization
           values:
