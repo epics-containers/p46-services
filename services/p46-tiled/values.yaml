@@ -181,8 +181,8 @@ oauth2:
         - name: Authorization
           values:
             - claimSource: 
-              claim: access_token
-              prefix: "Bearer "
+                claim: access_token
+                prefix: "Bearer "
 
 
 ## Postgres
