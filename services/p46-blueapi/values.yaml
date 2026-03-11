@@ -21,6 +21,11 @@ blueapi:
       value: "NO"
     - name: EPICS_CA_AUTO_ADDR_LIST
       value: "NO"
+    - name: TILED_WRITER_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: blueapi-secret
+          key: tiled-writer-secret
 
   tracing:
     otlp:
@@ -33,7 +38,7 @@ blueapi:
       metadata:
         instrument: p46
       sources:
-        - kind: dodal
+        - kind: deviceManager
           module: dodal.beamlines.training_rig
         - kind: planFunctions
           module: htss_rig_bluesky.plans
@@ -55,6 +60,7 @@ blueapi:
     oidc:
       well_known_url: "https://identity.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
       client_id: "blueapiCli"
+      client_audience: "account"
       logout_redirect_endpoint: "oauth2/sign_out"
     
     
@@ -66,7 +72,14 @@ blueapi:
         - name: dodal
           remote_url: https://github.com/DiamondLightSource/dodal.git
         - name: htss-rig-bluesky
-          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git
+          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git  
+
+    tiled:
+      enabled: true
+      url: "http://p46-tiled:8000/api/v1/"
+      authentication:
+        client_id: "p46TiledWriter"
+        client_secret: ${TILED_WRITER_SECRET}
   initContainer:
     enabled: true
     persistentVolume:
@@ -95,7 +108,7 @@ oauth2:
       email_domains = [ "*" ]
       skip_auth_routes=[
       "GET=^/config/oidc",
-      "GET=^/healthz"
+      "GET=^/healthz",
       ]
       whitelist_domains=["identity.diamond.ac.uk"]
   ingress:
@@ -118,7 +131,7 @@ oauth2:
       providers:
         - provider: oidc
           id: identity.diamond.ac.uk
-          clientID: p46Blueapi
+          clientID: p46-blueapi
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
@@ -130,9 +143,11 @@ oauth2:
       injectRequestHeaders:
         - name: Authorization
           values:
-            - claim: access_token
+          - claimSource:
+              claim: access_token
               prefix: "Bearer "
       injectResponseHeaders:
         - name: Identity
           values:
-            - claim: access_token
+            - claimSource: 
+                claim: access_token
