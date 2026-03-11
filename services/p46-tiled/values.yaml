@@ -87,23 +87,23 @@ tiled:
   - mountPath: /deploy/config
     name: config
     readOnly: true
-  - mountPath: /exports/mybeamline
-    mountPropagation: HostToContainer
-    name: data
-  - name: storage
-    mountPath: "/storage"
-    readOnly: false
+  # - mountPath: /exports/mybeamline
+  #   mountPropagation: HostToContainer
+  #   name: data
+  # - name: storage
+  #   mountPath: "/storage"
+    # readOnly: false
   - name: access-policy
     mountPath: /deploy/access_policy
     readOnly: true
   volumes:
-  - hostPath:
-      path: /exports/mybeamline
-      type: DirectoryOrCreate
-    name: data
-  - name: storage
-    persistentVolumeClaim:
-      claimName: tiled-storage-pvc
+  # - hostPath:
+  #     path: /exports/mybeamline
+  #     type: DirectoryOrCreate
+  #   name: data
+  # - name: storage
+  #   persistentVolumeClaim:
+  #     claimName: tiled-storage-pvc
   - name: access-policy
     configMap:
       name: tiled-access-policy
