@@ -233,7 +233,3 @@ postgres:
       requests:
         cpu: "0.5"
         memory: 1G
-
-## Redis
-
-# redis:
