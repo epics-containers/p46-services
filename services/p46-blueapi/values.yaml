@@ -29,8 +29,6 @@ blueapi:
         host: http://opentelemetry-collector.tracing
 
   worker:
-    numtracker:
-      url: https://numtracker.diamond.ac.uk/graphql
     env:
       metadata:
         instrument: p46
