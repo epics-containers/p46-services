@@ -110,6 +110,8 @@ tiled:
 
 glazed:
   image:
+    # TODO: Update to latest glazed after
+    # https://github.com/DiamondLightSource/glazed/pull/98 merged and released
     repository: ghcr.io/zohebshaikh/glazed
   customConfig:
     enabled: true
