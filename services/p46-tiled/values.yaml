@@ -239,8 +239,7 @@ authz:
     image:
       repository: docker.io/openpolicyagent/opa
       pullPolicy: IfNotPresent
-      tagOverride: ""
-      version: ""
+      tagOverride: "1.15.0"
       envoy: false
     orgData:
       enabled: true
@@ -249,6 +248,7 @@ authz:
         key: authz-bearer-token
 
     orgPolicy:
+      # This needs to be disabled as the chart is pointing to old policy
       enabled: false
       issuer: https://identity.diamond.ac.uk/realms/dls
 
