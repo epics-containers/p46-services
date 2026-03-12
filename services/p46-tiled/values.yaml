@@ -236,6 +236,8 @@ postgres:
 
 
 authz:
+    image:
+      tagOverride: "1.14.1"
     orgData:
       enabled: true
       bundlerSecret:
@@ -254,3 +256,5 @@ authz:
         polling:
           min_delay_seconds: 30
           max_delay_seconds: 120
+    service:
+      port: 8181
