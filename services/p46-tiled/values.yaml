@@ -233,3 +233,29 @@ postgres:
       requests:
         cpu: "0.5"
         memory: 1G
+
+
+authz:
+    image:
+      repository: docker.io/openpolicyagent/opa
+      pullPolicy: IfNotPresent
+      tagOverride: ""
+      version: ""
+      envoy: false
+    orgData:
+      enabled: true
+      bundlerSecret:
+        name: tiled-secret
+        key: authz-bearer-token
+
+    orgPolicy:
+      enabled: false
+      issuer: https://identity.diamond.ac.uk/realms/dls
+
+    extraBundles:
+      application-policy:
+        service: ghcr
+        resource: ghcr.io/diamondlightsource/authz-policy:0.0.21
+        polling:
+          min_delay_seconds: 30
+          max_delay_seconds: 120
