@@ -237,10 +237,7 @@ postgres:
 
 authz:
     image:
-      repository: docker.io/openpolicyagent/opa
-      pullPolicy: IfNotPresent
-      tagOverride: "1.15.0"
-      envoy: false
+      tagOverride: "1.14.1"
     orgData:
       enabled: true
       bundlerSecret:
