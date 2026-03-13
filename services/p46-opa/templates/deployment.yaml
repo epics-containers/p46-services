@@ -81,7 +81,7 @@ spec:
       volumes:
         - name: opa-config
           configMap:
-            name: opa-config
+            name: pxx-opa-config
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
