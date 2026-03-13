@@ -242,11 +242,6 @@ authz:
         name: tiled-secret
         key: authz-bearer-token
 
-    orgPolicy:
-      # This needs to be disabled as the chart is pointing to old policy
-      enabled: false
-      issuer: https://identity.diamond.ac.uk/realms/dls
-
     extraBundles:
       application-policy:
         service: ghcr
@@ -254,3 +249,7 @@ authz:
         polling:
           min_delay_seconds: 30
           max_delay_seconds: 120
+    
+    extraEnv:
+      - name: ISSUER
+        value: https://identity.diamond.ac.uk/realms/dls
