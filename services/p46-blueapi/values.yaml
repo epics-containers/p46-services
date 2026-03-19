@@ -1,4 +1,6 @@
 blueapi:
+  image:
+    tag: 1.12.1
   debug:
     enabled: true  
   ingress:
