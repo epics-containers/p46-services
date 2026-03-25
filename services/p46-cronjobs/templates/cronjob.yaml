@@ -9,6 +9,19 @@ spec:
       template:
         spec:
           serviceAccountName: {{ include "p46-cronjobs.serviceAccountName" . }}
+          tolerations:
+            - key: beamline
+              operator: Equal
+              value: bl46p
+              effect: NoSchedule
+            - key: location
+              operator: Equal
+              value: bl46p
+              effect: NoSchedule
+            - key: nodetype
+              operator: Equal
+              value: training-rig
+              effect: NoSchedule
           containers:
           - name: last-used-stamper
             image: bitnami/kubectl:latest
