@@ -1,7 +1,7 @@
 # A Helm Chart for an IOC instance
 apiVersion: v2
 name: ec-service
-version: 1.0.0
+version: 1.0.1
 
 type: application
 
