@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: last-used-stamper
+spec:
+  schedule: "*/5 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: {{ include "p46-cronjobs.serviceAccountName" . }}
+          containers:
+          - name: last-used-stamper
+            image: bitnami/kubectl:latest
+            imagePullPolicy: IfNotPresent
+            command:
+              - /bin/sh
+              - -c
+              - |
+                All_PVC=$(kubectl get pvc -o jsonpath='{.items[*].metadata.name}' -n p46-beamline | tr ' ' '\n')
+                MOUNTED_PVCS=$(kubectl get pods -n p46-beamline \
+                  -o=jsonpath='{.items[*].spec.volumes[*].persistentVolumeClaim.claimName}' | tr ' ' '\n' | sort -u)
+                NOW=$(date +%s)
+                for pvc in $All_PVC; do
+                  ANNOTATION=$(kubectl get pvc $pvc -n p46-beamline -o=jsonpath='{.metadata.annotations.last-used}')
+                  if [ -z "$ANNOTATION" ]; then
+                    kubectl annotate --overwrite pvc $pvc -n p46-beamline last-used="$NOW"
+                  elif echo "$MOUNTED_PVCS" | grep -q "$pvc"; then
+                    kubectl annotate --overwrite pvc $pvc -n p46-beamline last-used="$NOW"
+                  fi
+                done
+          restartPolicy: OnFailure

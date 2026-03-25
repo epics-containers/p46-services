@@ -1,0 +1,22 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: {{ include "p46-cronjobs.serviceAccountName" . }}
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods","persistentvolumeclaims"]
+  verbs: ["get", "patch", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: {{ include "p46-cronjobs.serviceAccountName" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ include "p46-cronjobs.serviceAccountName" . }}
+  namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: {{ include "p46-cronjobs.serviceAccountName" . }}
+  apiGroup: rbac.authorization.k8s.io
+  
