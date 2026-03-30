@@ -30,15 +30,19 @@ spec:
               - /bin/sh
               - -c
               - |
+                # Get all PVCs in the namespace, one per line
                 All_PVC=$(kubectl get pvc -o jsonpath='{.items[*].metadata.name}' -n {{ .Release.Name }}| tr ' ' '\n')
+                # Get all PVCs currently mounted by running pods
                 MOUNTED_PVCS=$(kubectl get pods -n {{ .Release.Name }}\
                   -o=jsonpath='{.items[*].spec.volumes[*].persistentVolumeClaim.claimName}' | tr ' ' '\n' | sort -u)
                 NOW=$(date +%s)
                 for pvc in $All_PVC; do
                   ANNOTATION=$(kubectl get pvc $pvc -n {{ .Release.Name }} -o=jsonpath='{.metadata.annotations.last-used}')
                   if [ -z "$ANNOTATION" ]; then
+                    # PVC has never been stamped — set initial timestamp
                     kubectl annotate --overwrite pvc $pvc -n {{ .Release.Name }} last-used="$NOW"
                   elif echo "$MOUNTED_PVCS" | grep -q "$pvc"; then
+                    # PVC is actively mounted — update timestamp
                     kubectl annotate --overwrite pvc $pvc -n {{ .Release.Name }} last-used="$NOW"
                   fi
                 done
