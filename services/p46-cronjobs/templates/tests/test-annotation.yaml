@@ -13,6 +13,6 @@ spec:
       args:
         - |
           # Check that at least one PVC has been stamped with a last-used annotation
-          kubectl get pvc -n {{ .Release.Name }} \
+          kubectl get pvc -n {{ .Release.Namespace }} \
             -o jsonpath='{.items[*].metadata.annotations.last-used}' | grep -q .
   restartPolicy: Never
