@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "p46-cronjobs.serviceAccountName" . }}-test-annotation"
+  name: "{{ .Release.Name }}-last-used-stamper-test-annotation"
   annotations:
     "helm.sh/hook": test
 spec:
-  serviceAccountName: {{ include "p46-cronjobs.serviceAccountName" . }}
+  serviceAccountName: {{ .Release.Name }}-last-used-stamper
   containers:
     - name: test
       image: bitnami/kubectl:latest
