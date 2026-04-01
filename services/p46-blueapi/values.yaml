@@ -1,6 +1,7 @@
 blueapi:
  # Overriding image tag for testing on fork
-  image.tag: "1.12.2"
+  image:
+    tag: "1.12.2"
   debug:
     enabled: true  
   ingress:
