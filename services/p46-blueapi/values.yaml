@@ -1,7 +1,7 @@
 blueapi:
  # Overriding image tag for testing on fork
   image:
-    tag: "1.12.9"
+    tag: "1.13.0"
      # Overriding image repo for testing on fork
     repository: ghcr.io/alexj9837/blueapi
   debug:
