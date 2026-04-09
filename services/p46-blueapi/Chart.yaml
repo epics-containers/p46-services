@@ -11,7 +11,7 @@ type: application
 
 dependencies:
   - name: blueapi
-    version: "1.13.0"
+    version: "0.1.0"
     repository: "file:///scratch/ret43730/dev/blueapi_dev/blueapi/helm/blueapi"
 
   - name: oauth2-proxy
