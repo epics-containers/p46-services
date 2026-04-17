@@ -1,9 +1,9 @@
 dependencies:
 - name: blueapi
-  repository: oci://ghcr.io/diamondlightsource/charts
-  version: 1.12.2
+  repository: oci://ghcr.io/neilsmithdls/charts
+  version: 1.1.1
 - name: oauth2-proxy
   repository: https://oauth2-proxy.github.io/manifests
   version: 10.4.3
-digest: sha256:ccf693aa800766ef659c35c6c17b573c093f5f309163b156fe1cc59c70154960
-generated: "2026-04-16T11:54:01.019597589Z"
+digest: sha256:f26662464f2bf35af97045a78fe0e9504478a5cbf180c06d89b24797356c0253
+generated: "2026-04-17T11:51:39.713899368+01:00"
