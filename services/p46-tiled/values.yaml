@@ -35,7 +35,7 @@ tiled:
     access_control:
       access_policy: "access_policy.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
       args:
-        authorization_provider: https://pxx-opa.diamond.ac.uk/v1/data/diamond/policy/
+        authorization_provider: http://p46-tiled-authz/v1/data/diamond/policy/
         token_audience: account
         empty_access_blob_public: true
     trees:
@@ -233,3 +233,23 @@ postgres:
       requests:
         cpu: "0.5"
         memory: 1G
+
+
+authz:
+    orgData:
+      enabled: true
+      bundlerSecret:
+        name: tiled-secret
+        key: authz-bearer-token
+
+    extraBundles:
+      application-policy:
+        service: ghcr
+        resource: ghcr.io/diamondlightsource/authz-policy:0.0.21
+        polling:
+          min_delay_seconds: 30
+          max_delay_seconds: 120
+    
+    extraEnv:
+      - name: ISSUER
+        value: https://identity.diamond.ac.uk/realms/dls
