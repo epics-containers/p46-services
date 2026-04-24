@@ -102,7 +102,7 @@ tiled:
   - hostPath:
       path: /exports/mybeamline
       type: DirectoryOrCreate
-  #   name: data
+    name: data
   # - name: storage
   #   persistentVolumeClaim:
   #     claimName: tiled-storage-pvc
