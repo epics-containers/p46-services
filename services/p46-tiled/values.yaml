@@ -17,9 +17,9 @@ tiled:
   image:
     tag: 0.2.7
   config:
-    database:
-      uri: sqlite:////storage/auth-1.db
-      init_if_not_exists: true
+    # database:
+    #   uri: sqlite:////storage/auth-1.db
+    #   init_if_not_exists: true
     authentication:
       secret_keys:
         - SECRET
