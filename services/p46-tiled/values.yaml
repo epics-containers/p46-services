@@ -44,6 +44,8 @@ tiled:
         args:
           uri: "postgresql+asyncpg://postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/tiled-db"
           writable_storage: "postgresql://postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/data"
+          readable_storage:
+            - /exports/mybeamline
           # uri: "sqlite:////storage/catalog.db"
           # writable_storage: "sqlite:////storage/data.db"
           # readable_storage:
