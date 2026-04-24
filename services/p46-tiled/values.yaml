@@ -18,7 +18,7 @@ tiled:
     tag: 0.2.7
   config:
     database:
-      uri: "postgresql+asyncpg://postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/auth"
+      uri: "sqlite:///file:authdb?mode=memory&cache=shared&uri=true"
       init_if_not_exists: true
     authentication:
       secret_keys:
