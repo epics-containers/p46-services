@@ -59,6 +59,8 @@ tiled:
           #
           # separately.
           init_if_not_exists: true
+    streaming_cache:
+      uri: redis://p46-tiled-redis:6379
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   ingress:
