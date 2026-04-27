@@ -15,7 +15,7 @@ tiled:
   - name: PYTHONPATH
     value: /deploy/
   image:
-    tag: 0.2.7
+    tag: 0.2.9
   config:
     database:
       uri: "sqlite:///file:authdb?mode=memory&cache=shared&uri=true"
