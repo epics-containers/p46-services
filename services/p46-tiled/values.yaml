@@ -148,6 +148,7 @@ oauth2:
       cookie_expire="30m"
       email_domains = [ "*" ]
       whitelist_domains=["identity.diamond.ac.uk"]
+      skip_auth_routes= ["^/api/v1/*"]
   ingress:
     enabled: true
     hosts:
