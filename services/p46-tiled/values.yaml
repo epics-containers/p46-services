@@ -32,12 +32,12 @@ tiled:
           device_flow_client_id: blueapiCli
           well_known_uri: "https://identity.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
           confirmation_message: "You have logged in with identity-test.diamond.ac.uk as {id}."
-    access_control:
-      access_policy: "access_policy.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
-      args:
-        authorization_provider: http://p46-tiled-authz/v1/data/diamond/policy/
-        token_audience: account
-        empty_access_blob_public: true
+    # access_control:
+      # access_policy: "access_policy.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
+      # args:
+      #   authorization_provider: http://p46-tiled-authz/v1/data/diamond/policy/
+      #   token_audience: account
+      #   empty_access_blob_public: true
     trees:
       - path: /
         tree: catalog
