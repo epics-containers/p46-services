@@ -21,17 +21,19 @@ tiled:
       uri: "sqlite:///file:authdb?mode=memory&cache=shared&uri=true"
       init_if_not_exists: true
     authentication:
-      secret_keys:
-        - SECRET
-      providers:
-      - provider: keycloak_oidc
-        authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
-        args:
-          audience: account
-          client_id: p46-tiled
-          device_flow_client_id: blueapiCli
-          well_known_uri: "https://identity.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
-          confirmation_message: "You have logged in with identity-test.diamond.ac.uk as {id}."
+      single_user_api_key: SECRET
+    # authentication:
+    #   secret_keys:
+    #     - SECRET
+    #   providers:
+    #   - provider: keycloak_oidc
+    #     authenticator: tiled.authenticators:ProxiedOIDCAuthenticator
+    #     args:
+    #       audience: account
+    #       client_id: p46-tiled
+    #       device_flow_client_id: blueapiCli
+    #       well_known_uri: "https://identity.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
+    #       confirmation_message: "You have logged in with identity-test.diamond.ac.uk as {id}."
     # access_control:
       # access_policy: "access_policy.dls:DiamondOpenPolicyAgentAuthorizationPolicy"
       # args:
