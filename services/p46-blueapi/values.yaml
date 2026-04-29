@@ -87,6 +87,33 @@ blueapi:
       enabled: true
       # existingClaimName: foo
 
+  # affinity chooses which servers to run on
+  # Accelerator must set this for CIAs, Beamlines don't need it
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beamline
+                operator: In
+                values:
+                  - bl46p
+
+  # tolerations allow us to run on a tainted server
+  # Accelerator must set this for CIAs, Beamlines don't need it
+  tolerations:
+    - key: beamline
+      operator: Equal
+      value: bl46p
+      effect: NoSchedule
+    - key: location
+      operator: Equal
+      value: bl46p
+      effect: NoSchedule
+    - key: nodetype
+      operator: Equal
+      value: training-rig
+      effect: NoSchedule
 oauth2:
   proxyVarsAsSecrets: false
   extraEnv:
