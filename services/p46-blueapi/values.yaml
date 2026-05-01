@@ -1,6 +1,6 @@
 blueapi:
   image:
-    tag: "1.12.2"
+    tag: "1.14.0"
   debug:
     enabled: true  
   ingress:
