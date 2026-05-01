@@ -36,8 +36,6 @@ blueapi:
         host: http://opentelemetry-collector.tracing
 
   worker:
-    numtracker:
-      url: https://numtracker-staging.diamond.ac.uk/graphql
     env:
       metadata:
         instrument: p46
@@ -68,6 +66,11 @@ blueapi:
       client_id: "blueapiCli"
       client_audience: "account"
       logout_redirect_endpoint: "oauth2/sign_out"
+    
+    
+    numtracker:
+      url: https://numtracker-staging.diamond.ac.uk/graphql
+    
     scratch:
       repositories:
         - name: dodal

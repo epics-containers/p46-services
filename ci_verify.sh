@@ -13,6 +13,28 @@ set -xe
 rm -rf ${ROOT}/.ci_work/
 mkdir -p ${ROOT}/.ci_work
 
+# Perform pre-commit checks to ensure techui-builder has validated the synoptic
+# and that the ibek-runtme-support schema is up to date
+################################################################################
+
+
+cd ${ROOT}
+git submodule update --init
+
+pip install uv
+# use python 3.13 to ensure latest pydantic
+uv venv --python 3.13 --clear
+source .venv/bin/activate
+uv pip install -r requirements.txt
+
+# run pre-commit checking which tool versions will be used.
+uvx pre-commit install
+uvx ibek --version
+uvx techui-builder --version
+uvx pre-commit run --all-files --show-diff-on-failure
+
+# Verify the IOC instance definitions
+################################################################################
 # if a docker provider is specified, use it
 if [[ $DOCKER_PROVIDER ]]; then
     docker=$DOCKER_PROVIDER
@@ -21,9 +43,40 @@ else
     if ! docker version &>/dev/null; then docker=podman; else docker=docker; fi
 fi
 
-# copy the services to a temporary location to avoid dirtying the repo
-cp -r ${ROOT}/services/* ${ROOT}/.ci_work/
+# Determine diff base
+if [[ -n "${CI_MERGE_REQUEST_TARGET_BRANCH_NAME:-}" ]]; then
+    # GitLab MR
+    DIFF_BASE="origin/${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}"
+elif [[ -n "${GITHUB_BASE_REF:-}" ]]; then
+    # GitHub PR
+    DIFF_BASE="origin/${GITHUB_BASE_REF}"
+elif git rev-parse HEAD~1 >/dev/null 2>&1; then
+    # normal push
+    DIFF_BASE="HEAD~1"
+else
+    # first commit
+    DIFF_BASE=$(git hash-object -t tree /dev/null)
+fi
 
+# Get changed services (excluding values.yaml)
+CHANGED_SERVICES=$(git diff --name-only "$DIFF_BASE" HEAD \
+  | grep '^services/' \
+  | grep -v 'values.yaml' \
+  | cut -d/ -f2 \
+  | sort -u)
+
+
+# Need to make sure values.yaml is included in the ci
+cp -L "${ROOT}/services/values.yaml" "${ROOT}/.ci_work/"
+
+# copy only the changed services to a temporary location to avoid dirtying the repo
+for svc in $CHANGED_SERVICES; do
+  echo "Preparing service: $svc"
+  cp -Lr "${ROOT}/services/$svc" "${ROOT}/.ci_work/"
+done
+
+# enable nullglob so * is not taken literally if no services are changed
+shopt -s nullglob
 for service in ${ROOT}/.ci_work/*/  # */ to skip files
 do
     ### Lint each service chart and validate if schema given ###
