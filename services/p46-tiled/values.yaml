@@ -18,7 +18,7 @@ tiled:
     tag: 0.2.7
   config:
     database:
-      uri: sqlite:////storage/auth.db
+      uri: "sqlite:///file:authdb?mode=memory&cache=shared&uri=true"
       init_if_not_exists: true
     authentication:
       secret_keys:
@@ -44,6 +44,8 @@ tiled:
         args:
           uri: "postgresql+asyncpg://postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/tiled-db"
           writable_storage: "postgresql://postgres:${POSTGRESQL_PASSWORD}@p46-tiled-postgres:5432/data"
+          readable_storage:
+            - /exports/mybeamline
           # uri: "sqlite:////storage/catalog.db"
           # writable_storage: "sqlite:////storage/data.db"
           # readable_storage:
@@ -87,20 +89,20 @@ tiled:
   - mountPath: /deploy/config
     name: config
     readOnly: true
-  # - mountPath: /exports/mybeamline
-  #   mountPropagation: HostToContainer
-  #   name: data
+  - mountPath: /exports/mybeamline
+    mountPropagation: HostToContainer
+    name: data
   # - name: storage
   #   mountPath: "/storage"
-    # readOnly: false
+  #   readOnly: false
   - name: access-policy
     mountPath: /deploy/access_policy
     readOnly: true
   volumes:
-  # - hostPath:
-  #     path: /exports/mybeamline
-  #     type: DirectoryOrCreate
-  #   name: data
+  - hostPath:
+      path: /exports/mybeamline
+      type: DirectoryOrCreate
+    name: data
   # - name: storage
   #   persistentVolumeClaim:
   #     claimName: tiled-storage-pvc
