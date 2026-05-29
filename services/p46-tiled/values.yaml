@@ -145,6 +145,12 @@ oauth2:
       cookie_refresh="1m"
       cookie_expire="30m"
       email_domains = [ "*" ]
+      skip_auth_routes=[
+      "GET=^/tiled-ui-settings",
+      "GET=^/heathz",
+      "^/api/.*",
+      "^/zarr/.*"
+      ],
       whitelist_domains=["identity.diamond.ac.uk"]
   ingress:
     enabled: true
