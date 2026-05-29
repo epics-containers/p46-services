@@ -77,7 +77,7 @@ blueapi:
 
     tiled:
       enabled: true
-      url: "https://tiled.diamond.ac.uk/api/v1/"
+      url: "https://p46-tiled.diamond.ac.uk/api/v1/"
       authentication:
         client_id: "p46TiledWriter"
         client_secret: ${TILED_WRITER_SECRET}
