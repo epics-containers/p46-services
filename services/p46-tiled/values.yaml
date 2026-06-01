@@ -38,6 +38,8 @@ tiled:
         authorization_provider: http://p46-tiled-authz/v1/data/diamond/policy/
         token_audience: account
         empty_access_blob_public: true
+    allow_origins:
+      - https://p51.diamond.ac.uk
     trees:
       - path: /
         tree: catalog
