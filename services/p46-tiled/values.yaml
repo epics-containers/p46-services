@@ -1,4 +1,11 @@
 tiled:
+  securityContext: # will apply to all containers in the pod
+    runAsUser: 1226068
+    runAsGroup: 1226068
+    supplementalGroups:
+      - 37900
+      - 1226068
+      - 37904
   extraEnvVars:
   - name: USER_NAME
     valueFrom:
@@ -29,7 +36,7 @@ tiled:
         args:
           audience: account
           client_id: p46-tiled
-          device_flow_client_id: tiled-cli
+          device_flow_client_id: tiledCli
           well_known_uri: "https://identity.diamond.ac.uk/realms/dls/.well-known/openid-configuration"
           confirmation_message: "You have logged in with identity-test.diamond.ac.uk as {id}."
     access_control:
