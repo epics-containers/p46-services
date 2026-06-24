@@ -1,11 +1,11 @@
 tiled:
-  securityContext: # will apply to all containers in the pod
-    runAsUser: 1226068
-    runAsGroup: 1226068
-    supplementalGroups:
-      - 37900
-      - 1226068
-      - 37904
+  # securityContext: # will apply to all containers in the pod
+  #   runAsUser: 1226068
+  #   runAsGroup: 1226068
+  #   supplementalGroups:
+  #     - 37900
+  #     - 1226068
+  #     - 37904
   extraEnvVars:
   - name: USER_NAME
     valueFrom:
