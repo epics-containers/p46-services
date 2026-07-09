@@ -1,7 +1,7 @@
 blueapi:
   image:
     repository: ghcr.io/alexj9837/blueapi
-    tag: "1.15.1"
+    tag: "1.15.2"
   debug:
     enabled: true  
   ingress:
