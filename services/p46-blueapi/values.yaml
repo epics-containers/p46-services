@@ -37,6 +37,8 @@ blueapi:
         host: http://opentelemetry-collector.tracing
 
   worker:
+    numtracker:
+      url: https://numtracker-staging.diamond.ac.uk/graphql
     env:
       metadata:
         instrument: p46
@@ -70,7 +72,7 @@ blueapi:
           remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git  
 
     tiled:
-      enabled: false
+      enabled: true
       url: "http://p46-tiled:8000/api/v1/"
       authentication:
         client_id: "p46TiledWriter"
