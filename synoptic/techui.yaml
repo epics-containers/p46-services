@@ -1,0 +1,11 @@
+beamline:
+  short_dom: "P46"
+  long_dom: "BL46P"
+  desc: "P46 Beamline or Tech Area"
+
+# add components for techUI-builder to build screens for
+components: {}
+
+  # DCAM1:
+  #   desc: GigE camera EXAMPLE
+  #   prefix: BL46P-DI-DCAM-01
