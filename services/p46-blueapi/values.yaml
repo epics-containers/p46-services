@@ -23,21 +23,14 @@ blueapi:
       value: "NO"
     - name: EPICS_CA_AUTO_ADDR_LIST
       value: "NO"
+    
     - name: TILED_WRITER_SECRET
       valueFrom:
         secretKeyRef:
           name: blueapi-secret
           key: tiled-writer-secret
-
-  tracing:
-    otlp:
-      enabled: true
-      server:
-        host: http://opentelemetry-collector.tracing
-
+    
   worker:
-    numtracker:
-      url: https://numtracker-staging.diamond.ac.uk/graphql
     env:
       metadata:
         instrument: p46
@@ -52,12 +45,14 @@ blueapi:
           module: dodal.plan_stubs
       events:
         broadcast_status_events: False
+
     stomp:
       auth:
         username: guest
         password: guest
       url: tcp://p46-rabbitmq:61613
       enabled: true
+
     logging:
       level: "INFO"
       graylog:
@@ -68,24 +63,31 @@ blueapi:
       client_id: "blueapiCli"
       client_audience: "account"
       logout_redirect_endpoint: "oauth2/sign_out"
-    scratch:
-      repositories:
-        - name: dodal
-          remote_url: https://github.com/DiamondLightSource/dodal.git
-        - name: htss-rig-bluesky
-          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git  
-
+    
+    
+    numtracker:
+      url: https://numtracker-staging.diamond.ac.uk/graphql
+    
+    
     tiled:
       enabled: true
       url: "http://p46-tiled:8000/api/v1/"
       authentication:
         client_id: "p46TiledWriter"
         client_secret: ${TILED_WRITER_SECRET}
+    
+    scratch:
+      root: /workspaces
+      repositories:
+        - name: dodal
+          remote_url: https://github.com/DiamondLightSource/dodal.git
+        - name: htss-rig-bluesky
+          remote_url: https://github.com/DiamondLightSource/htss-rig-bluesky.git  
+
   initContainer:
     enabled: true
     persistentVolume:
       enabled: true
-      # existingClaimName: foo
 
   # affinity chooses which servers to run on
   # Accelerator must set this for CIAs, Beamlines don't need it
@@ -159,7 +161,7 @@ oauth2:
       providers:
         - provider: oidc
           id: identity.diamond.ac.uk
-          clientID: p46-blueapi
+          clientID: p46Blueapi
           clientSecret: ${OAUTH2_PROXY_CLIENT_SECRET}
           oidcConfig:
             insecureAllowUnverifiedEmail: true
@@ -171,11 +173,6 @@ oauth2:
       injectRequestHeaders:
         - name: Authorization
           values:
-          - claimSource:
-              claim: access_token
-              prefix: "Bearer "
-      injectResponseHeaders:
-        - name: Identity
-          values:
-            - claimSource: 
+            - claimSource:
                 claim: access_token
+                prefix: "Bearer "
