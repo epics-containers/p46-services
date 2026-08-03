@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://github.com/epics-containers/ec-helm-charts/releases/download/5.5.0/ioc-instance.schema.json#/$defs/service
 
 ioc-instance:
-  image: ghcr.io/epics-containers/ioc-adaravis-runtime:2026.4.3
+  image: ghcr.io/epics-containers/ioc-adaravis-runtime:r2-3-ec1.beta.25
 
   dataVolume:
     pvc: false
