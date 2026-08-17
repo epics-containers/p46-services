@@ -1,8 +1,7 @@
 blueapi:
-  image:
-    tag: "1.18.0"
-  debug:
-    enabled: true  
+  image: 
+    repository: ghcr.io/zohebshaikh/blueapi
+    tag: v1.18.1
   ingress:
     enabled: false
     hosts:
