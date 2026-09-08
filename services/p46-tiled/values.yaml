@@ -1,11 +1,11 @@
 tiled:
-  securityContext: # will apply to all containers in the pod
-    runAsUser: 1226068
-    runAsGroup: 1226068
-    supplementalGroups:
-      - 37900
-      - 1226068
-      - 37904
+  # securityContext: # will apply to all containers in the pod
+  #   runAsUser: 1226068
+  #   runAsGroup: 1226068
+  #   supplementalGroups:
+  #     - 37900
+  #     - 1226068
+  #     - 37904
   extraEnvVars:
   - name: USER_NAME
     valueFrom:
@@ -68,8 +68,15 @@ tiled:
           #
           # separately.
           init_if_not_exists: true
-  nodeSelector:
-    kubernetes.io/hostname: p46-k8s-serv-01.diamond.ac.uk
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beamline
+                operator: In
+                values:
+                  - p46
   ingress:
     enabled: false
     className: "nginx"
@@ -83,8 +90,8 @@ tiled:
       cpu: 1000m
       memory: 4Gi
     requests:
-      cpu: 500m
-      memory: 2Gi
+      cpu: 200m
+      memory: 1Gi
   tolerations:
   - effect: NoSchedule
     key: nodetype
