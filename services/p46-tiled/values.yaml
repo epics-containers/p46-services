@@ -1,11 +1,11 @@
 tiled:
-  # securityContext: # will apply to all containers in the pod
-  #   runAsUser: 1226068
-  #   runAsGroup: 1226068
-  #   supplementalGroups:
-  #     - 37900
-  #     - 1226068
-  #     - 37904
+  securityContext: # will apply to all containers in the pod
+    runAsUser: 1226068
+    runAsGroup: 1226068
+    supplementalGroups:
+      - 37900
+      - 1226068
+      - 37904
   extraEnvVars:
   - name: USER_NAME
     valueFrom:
@@ -69,7 +69,7 @@ tiled:
           # separately.
           init_if_not_exists: true
   nodeSelector:
-    kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
+    kubernetes.io/hostname: p46-k8s-serv-01.diamond.ac.uk
   ingress:
     enabled: false
     className: "nginx"
@@ -94,6 +94,10 @@ tiled:
     key: beamline
     operator: Equal
     value: bl46p
+  - key: location
+    operator: Equal
+    value: p46
+    effect: NoSchedule
   volumeMounts:
   - mountPath: /deploy/config
     name: config
