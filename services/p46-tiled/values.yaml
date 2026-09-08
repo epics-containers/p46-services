@@ -100,7 +100,7 @@ tiled:
   - effect: NoSchedule
     key: beamline
     operator: Equal
-    value: bl46p
+    value: p46
   volumeMounts:
   - mountPath: /deploy/config
     name: config
