@@ -14,14 +14,27 @@ nexus-file-converter:
 
   nodeSelector:
     kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beamline
+                operator: In
+                values:
+                  - p46
   tolerations:
+    - key: beamline
+      operator: Equal
+      value: p46
+      effect: NoSchedule
+    - key: location
+      operator: Equal
+      value: p46
+      effect: NoSchedule
     - key: nodetype
       operator: Equal
       value: training-rig
-      effect: NoSchedule
-    - key: beamline
-      operator: Equal
-      value: bl46p
       effect: NoSchedule
 
   volumes:

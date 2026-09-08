@@ -76,6 +76,15 @@ tiled:
     requests:
       cpu: 500m
       memory: 2Gi
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beamline
+                operator: In
+                values:
+                  - p46
   tolerations:
   - effect: NoSchedule
     key: nodetype
@@ -84,7 +93,11 @@ tiled:
   - effect: NoSchedule
     key: beamline
     operator: Equal
-    value: bl46p
+    value: p46
+  - effect: NoSchedule
+    key: location
+    operator: Equal
+    value: p46
   volumeMounts:
   - mountPath: /deploy/config
     name: config
