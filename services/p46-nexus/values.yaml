@@ -20,8 +20,15 @@ nexus-file-converter:
     - name: OTEL_LOG_LEVEL
       value: debug        
 
-  nodeSelector:
-    kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beamline
+                operator: In
+                values:
+                  - p46
   tolerations:
     - key: nodetype
       operator: Equal
@@ -29,7 +36,7 @@ nexus-file-converter:
       effect: NoSchedule
     - key: beamline
       operator: Equal
-      value: bl46p
+      value: p46
       effect: NoSchedule
 
   volumes:
