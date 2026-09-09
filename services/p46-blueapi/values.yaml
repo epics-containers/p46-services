@@ -99,18 +99,14 @@ blueapi:
               - key: beamline
                 operator: In
                 values:
-                  - bl46p
+                  - p46
 
   # tolerations allow us to run on a tainted server
   # Accelerator must set this for CIAs, Beamlines don't need it
   tolerations:
     - key: beamline
       operator: Equal
-      value: bl46p
-      effect: NoSchedule
-    - key: location
-      operator: Equal
-      value: bl46p
+      value: p46
       effect: NoSchedule
     - key: nodetype
       operator: Equal
