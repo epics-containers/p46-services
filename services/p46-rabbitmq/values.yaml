@@ -57,10 +57,6 @@ rabbitmq:
       operator: Equal
       value: p46
       effect: NoSchedule
-    - key: location
-      operator: Equal
-      value: p46
-      effect: NoSchedule
     - key: nodetype
       operator: Equal
       value: training-rig
