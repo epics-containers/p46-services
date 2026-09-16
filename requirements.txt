@@ -1,4 +1,4 @@
 uv
 urllib3<2.8.1
 Kodman
-ibek==4.6.3
+ibek==4.7.0
