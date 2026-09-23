@@ -19,6 +19,23 @@
       "matchUpdateTypes": ["minor", "patch"],
       "matchCurrentVersion": "!/^0/",
       "automerge": true
+    },
+    {
+      "description": ["automerge patch changes for versions <1.0.0"],
+      "matchUpdateTypes": ["patch"],
+      "matchCurrentVersion": "/^0/",
+      "automerge": true
+    },
+    {
+      "description": [
+        "Generic IOC images use CalVer (e.g. 2026.9.1), so a new year looks",
+        "like a major bump. Any new release tag is intended for deployment,",
+        "so automerge all updates (CI must still pass)."
+      ],
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["/^ghcr\\.io/epics-containers/ioc-/"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "automerge": true
     }
   ],
   "customManagers": [
