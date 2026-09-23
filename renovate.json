@@ -34,6 +34,18 @@
       ],
       "matchDatasources": ["docker"],
       "matchPackageNames": ["/^ghcr\\.io/epics-containers/ioc-/"],
+      "matchCurrentVersion": "/^20\\d\\d\\./",
+      "matchUpdateTypes": ["major", "minor", "patch"],
+      "automerge": true
+    },
+    {
+      "description": [
+        "The epics-gateways helm chart is also CalVer; automerge all updates",
+        "so a year rollover does not wait for a manual merge."
+      ],
+      "matchDatasources": ["helm"],
+      "matchPackageNames": ["epics-gateways"],
+      "matchCurrentVersion": "/^20\\d\\d\\./",
       "matchUpdateTypes": ["major", "minor", "patch"],
       "automerge": true
     }
