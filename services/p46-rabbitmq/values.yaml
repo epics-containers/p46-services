@@ -37,3 +37,27 @@ rabbitmq:
       cpu: 2000m
       memory: 1536Mi
       ephemeral-storage: 2Gi
+
+  # affinity chooses which servers to run on
+  # Accelerator must set this for CIAs, Beamlines don't need it
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: beamline
+                operator: In
+                values:
+                  - p46
+
+  # tolerations allow us to run on a tainted server
+  # Accelerator must set this for CIAs, Beamlines don't need it
+  tolerations:
+    - key: beamline
+      operator: Equal
+      value: p46
+      effect: NoSchedule
+    - key: nodetype
+      operator: Equal
+      value: training-rig
+      effect: NoSchedule

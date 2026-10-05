@@ -27,16 +27,12 @@ affinity:
             - key: beamline
               operator: In
               values:
-                - bl46p
+                - p46
 
 tolerations:
   - key: beamline
     operator: Equal
-    value: bl46p
-    effect: NoSchedule
-  - key: location
-    operator: Equal
-    value: bl46p
+    value: p46
     effect: NoSchedule
   - key: nodetype
     operator: Equal
