@@ -12,19 +12,6 @@ nexus-file-converter:
         NX_class@: NXinstrument
         name: p46
 
-  nodeSelector:
-    beamline: p46
-
-  tolerations:
-    - key: beamline
-      operator: Equal
-      value: p46
-      effect: NoSchedule
-    - key: nodetype
-      operator: Equal
-      value: training-rig
-      effect: NoSchedule
-
   volumes:
   - name: nexus-data
     hostPath:

@@ -17,17 +17,3 @@ service_ports:
 # set this if you want a fixed IP for the service (must be from the fixed pool)
 service_ip: 172.23.168.208
 
-# add affinity and tolerances as required below. Delete these if not required
-
-nodeSelector:
-  beamline: p46
-
-tolerations:
-  - key: beamline
-    operator: Equal
-    value: p46
-    effect: NoSchedule
-  - key: nodetype
-    operator: Equal
-    value: training-rig
-    effect: NoSchedule

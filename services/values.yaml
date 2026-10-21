@@ -13,17 +13,17 @@ shared: &shared
   # set to true for Channel Access to work outside of the cluster (or use a gateway)
   hostNetwork: true
 
-  # affinity and tolerations to get the right nodes on pollux
   # running as ixxdetector account uid,gid gives access to /dls/ixx/data
   securityContext:
     allowPrivilegeEscalation: false
     runAsUser: 37890
     runAsGroup: 37890
 
-  nodeSelector:
+  # nodeSelector and tolerations to get the right nodes on pollux
+  nodeSelector: &nodeSelector
     beamline: p46
 
-  tolerations:
+  tolerations: &tolerations
     - key: beamline
       operator: Equal
       value: p46
@@ -43,3 +43,24 @@ dev-c7:
 
 epics-pvcs:
   <<: *shared
+
+# the same scheduling for the services, by the key each chart reads
+# (root for local charts p46-proxy and p46-opa, else the subchart alias)
+nodeSelector: *nodeSelector
+tolerations: *tolerations
+
+blueapi:
+  nodeSelector: *nodeSelector
+  tolerations: *tolerations
+
+oauth2:
+  nodeSelector: *nodeSelector
+  tolerations: *tolerations
+
+nexus-file-converter:
+  nodeSelector: *nodeSelector
+  tolerations: *tolerations
+
+tiled:
+  nodeSelector: *nodeSelector
+  tolerations: *tolerations

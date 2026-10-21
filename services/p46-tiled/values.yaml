@@ -59,8 +59,6 @@ tiled:
           #
           # separately.
           init_if_not_exists: true
-  nodeSelector:
-    beamline: p46
   ingress:
     enabled: false
     className: "nginx"
@@ -76,15 +74,6 @@ tiled:
     requests:
       cpu: 500m
       memory: 2Gi
-  tolerations:
-  - effect: NoSchedule
-    key: nodetype
-    operator: Equal
-    value: training-rig
-  - effect: NoSchedule
-    key: beamline
-    operator: Equal
-    value: p46
   volumeMounts:
   - mountPath: /deploy/config
     name: config
