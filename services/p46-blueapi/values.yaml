@@ -89,20 +89,9 @@ blueapi:
     persistentVolume:
       enabled: true
 
-  # affinity chooses which servers to run on
-  # Accelerator must set this for CIAs, Beamlines don't need it
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: beamline
-                operator: In
-                values:
-                  - p46
+  nodeSelector:
+    beamline: p46
 
-  # tolerations allow us to run on a tainted server
-  # Accelerator must set this for CIAs, Beamlines don't need it
   tolerations:
     - key: beamline
       operator: Equal
@@ -172,3 +161,16 @@ oauth2:
             - claimSource:
                 claim: access_token
                 prefix: "Bearer "
+
+  nodeSelector:
+    beamline: p46
+
+  tolerations:
+    - key: beamline
+      operator: Equal
+      value: p46
+      effect: NoSchedule
+    - key: nodetype
+      operator: Equal
+      value: training-rig
+      effect: NoSchedule
