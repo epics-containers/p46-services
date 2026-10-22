@@ -6,3 +6,6 @@ epics-gateways:
   securityContext:
     runAsUser: 37890
     runAsGroup: 37890
+
+  hostNetwork: true
+  
