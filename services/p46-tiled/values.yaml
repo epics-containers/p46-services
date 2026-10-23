@@ -59,8 +59,6 @@ tiled:
           #
           # separately.
           init_if_not_exists: true
-  nodeSelector:
-    kubernetes.io/hostname: bl46p-ea-serv-01.diamond.ac.uk
   ingress:
     enabled: false
     className: "nginx"
@@ -76,15 +74,6 @@ tiled:
     requests:
       cpu: 500m
       memory: 2Gi
-  tolerations:
-  - effect: NoSchedule
-    key: nodetype
-    operator: Equal
-    value: training-rig
-  - effect: NoSchedule
-    key: beamline
-    operator: Equal
-    value: bl46p
   volumeMounts:
   - mountPath: /deploy/config
     name: config
