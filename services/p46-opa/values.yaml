@@ -131,8 +131,5 @@ volumeMounts: []
 #   mountPath: "/etc/foo"
 #   readOnly: true
 
-nodeSelector: {}
-
-tolerations: []
 
 affinity: {}
